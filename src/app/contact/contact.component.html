@@ -42,23 +42,27 @@
             <div class="col-md-7 order-md-1">
                 <h4 class="down-line mb-4">Send Message</h4>
                 <div class="form-simple">
-                    <form id="contact-form" action="#" method="post" novalidate="novalidate">
+                    <form [formGroup]="contactForm" id="contact-form" (ngSubmit)="contactUs()">
                         <div class="row">
                             <div class="col-md-6 mb-20">
                                 <label class="mb-2">Full Name:</label>
-                                <input type="text" class="form-control bg-white" name="name" required="">
+                                <input placeholder="Enter your name" formControlName="name" type="text" class="form-control bg-white" required="">
                             </div>
                             <div class="col-md-6 mb-20">
                                 <label class="mb-2">Your Email:</label>
-                                <input type="email" class="form-control bg-white" name="email" required="">
+                                <input placeholder="Enter your email" formControlName="email" type="email" class="form-control bg-white" required="">
                             </div>
                             <div class="col-md-12 mb-20">
                                 <label class="mb-2">Subject:</label>
-                                <input type="text" class="form-control bg-white" name="subject" required="">
+                                <input placeholder="Enter subject" formControlName="subject" type="text" class="form-control bg-white" required="">
+                            </div>
+                            <div class="col-md-12 mb-20">
+                                <label class="mb-2">Contact Number:</label>
+                                <input placeholder="Enter contact number" formControlName="mobile" type="tel" class="form-control bg-white" required="">
                             </div>
                             <div class="col-md-12 mb-20">
                                 <label class="mb-2">Message:</label>
-                                <textarea class="form-control bg-white" name="message" rows="8" required=""></textarea>
+                                <textarea placeholder="Enter your message" formControlName="message" class="form-control bg-white" rows="8" required=""></textarea>
                             </div>
                             <div class="col-md-12">
                                 <button class="btn btn-primary" name="submit" type="submit">Send Message</button>
@@ -71,3 +75,5 @@
     </div>
 </div>
 <!--============== Contact form End ==============-->
+
+<app-loader *ngIf="loader"></app-loader>

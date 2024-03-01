@@ -1,4 +1,4 @@
-function customJS(){
+function customJS() {
     'use strict';
 
 
@@ -56,7 +56,7 @@ function customJS(){
             $('.preloader').delay(500).fadeOut(100);
         }
     }
-    $window.on('load', function() {
+    $window.on('load', function () {
         handlePreloader();
     });
 
@@ -89,7 +89,7 @@ function customJS(){
 
     // Dashboard nvaigation icon
     if (document.querySelector('.db-dropdown') !== null) {
-        $('.db-dropdown > .dropdown-toggle').on('click', function() {
+        $('.db-dropdown > .dropdown-toggle').on('click', function () {
             $(this).parent('.db-dropdown').toggleClass('active');
             $(this).parent('.db-dropdown').children('.db-dropdown-menu').slideToggle();
         });
@@ -97,7 +97,7 @@ function customJS(){
 
     // Dashboard navigation collapse
     if (document.querySelector('.collaps-dashboard') !== null) {
-        $('.collaps-dashboard').on('click', function() {
+        $('.collaps-dashboard').on('click', function () {
             $('.dashboard-nav').toggleClass('active');
             $('.dashboard-nav').slideToggle();
         });
@@ -106,7 +106,7 @@ function customJS(){
 
     // Block Show/hide option
     if (document.querySelector('.toggle-btn') !== null) {
-        $('.toggle-btn').on('click', function(e) {
+        $('.toggle-btn').on('click', function (e) {
             e.preventDefault();
             var $this = $(this).attr('data-target');
             $($this).toggleClass('visible');
@@ -116,7 +116,7 @@ function customJS(){
 
     // Data quick view
     if (document.querySelector('.quick-view') !== null) {
-        $('.quick-view').on('click', function(e) {
+        $('.quick-view').on('click', function (e) {
             e.preventDefault();
             var target = $(this).attr('href');
             $('body').addClass('modal-open');
@@ -126,7 +126,7 @@ function customJS(){
             e.stopPropagation();
         });
 
-        $('.view-close').on('click', function() {
+        $('.view-close').on('click', function () {
             $('body').removeClass('modal-open');
             $('body').css('padding-right', '0');
             $(this).parents('.quick-view-modal').removeClass('show');
@@ -134,7 +134,7 @@ function customJS(){
 
         });
 
-        $('.quick-view-modal').on('click', function(e) {
+        $('.quick-view-modal').on('click', function (e) {
             if ($(e.target).closest('.modal-dialog').length === 0) {
                 $('body').removeClass('modal-open');
                 $('body').css('padding-right', '0');
@@ -147,8 +147,8 @@ function customJS(){
 
     // Parallax - START CODE
     if ($('.paraxify').length) {
-        $(function() {
-            $window.on("load resize scroll", function() {
+        $(function () {
+            $window.on("load resize scroll", function () {
                 paraxify('.paraxify');
             });
         });
@@ -157,7 +157,7 @@ function customJS(){
 
     // Custom accordion useable settings for any type of accordion system
     if (document.querySelector('.bb-accordion') !== null) {
-        $('.ac-toggle').on('click', function(e) {
+        $('.ac-toggle').on('click', function (e) {
             e.preventDefault();
 
             var $this = $(this);
@@ -205,7 +205,7 @@ function customJS(){
             $close = $('.slide-nav-close'),
             $sidenav = $('.nav-leftpush-overlay .navbar-expand-lg .navbar-slide-push');
 
-        $this.on('click', function(event) {
+        $this.on('click', function (event) {
             event.preventDefault();
             $sidenav.addClass('visible');
             $('#page_wrapper').addClass('overlay');
@@ -213,16 +213,16 @@ function customJS(){
         });
 
 
-        $sidenav.on('click', function(event) {
+        $sidenav.on('click', function (event) {
             event.stopPropagation();
         });
 
-        $window.on('click', function(e) {
+        $window.on('click', function (e) {
             $sidenav.removeClass('visible');
             $('#page_wrapper').removeClass('overlay');
         });
 
-        $close.on('click', function(e) {
+        $close.on('click', function (e) {
             $sidenav.removeClass('visible');
             $('#page_wrapper').removeClass('overlay');
         });
@@ -239,14 +239,14 @@ function customJS(){
 
 
     //bootstrap selectpiker
-    $(function() {
+    $(function () {
         $('.selectpicker').selectpicker();
     });
 
 
 
     // Simple tab manus
-    $(function() {
+    $(function () {
 
         // default action
         $('.tab-element .tab-pane').hide();
@@ -254,7 +254,7 @@ function customJS(){
         $('.tab-element .tab-pane:first-child').show();
 
         // on click event
-        $('.tab-action ul li').on('click', function() {
+        $('.tab-action ul li').on('click', function () {
             $(this).parent('ul').children('li').removeClass('active');
             $(this).addClass('active');
             $(this).parent('ul').next('.tab-element').children('.tab-pane').hide();
@@ -267,10 +267,10 @@ function customJS(){
 
 
     // Auto active class adding with navigation
-    $window.on('load', function() {
+    $window.on('load', function () {
         var current = location.pathname;
         var $path = current.substring(current.lastIndexOf('/') + 1);
-        $('#navbarSupportedContent li a').each(function(e) {
+        $('#navbarSupportedContent li a').each(function (e) {
             var $this = $(this);
             // if the current path is like this link, make it active
             if ($path == $this.attr('href')) {
@@ -302,7 +302,7 @@ function customJS(){
         if (get_height > 0 && $window.width() > 991) {
             jQuery('.nav-on-top').next().css('margin-top', get_height);
         }
-        $window.on('resize', function() {
+        $window.on('resize', function () {
             $header.removeClass('fixed-top');
             var get_height = jQuery('.nav-on-top').height();
             if ($window.width() < 991) {
@@ -317,7 +317,7 @@ function customJS(){
         if (get_height > 0 && $window.width() > 991) {
             jQuery('.nav-on-banner').next().css('padding-top', get_height);
         }
-        $window.on('resize', function() {
+        $window.on('resize', function () {
             $header.removeClass('fixed-top');
             var get_height = jQuery('.nav-on-banner').height();
             if ($window.width() < 991) {
@@ -331,8 +331,8 @@ function customJS(){
 
 
     // dropdown submenu on hover in desktopand dropdown sub menu on click in mobile 
-    $navigation.each(function() {
-        $dropdown.on('click', function(e) {
+    $navigation.each(function () {
+        $dropdown.on('click', function (e) {
             if ($window.width() < 1100) {
                 if ($(this).parent('.dropdown').hasClass('visible')) {
                     $(this).parent('.dropdown').children('.dropdown-menu').first().stop(true, true).slideUp(300);
@@ -349,11 +349,11 @@ function customJS(){
             }
         });
 
-        $('body').on('click', function(e) {
+        $('body').on('click', function (e) {
             $dropdown.parent('.dropdown').removeClass('visible');
         });
 
-        $window.on('resize', function() {
+        $window.on('resize', function () {
             if ($window.width() > 991) {
                 $('.dropdown-menu').removeAttr('style');
                 $('.dropdown ').removeClass('visible');
@@ -365,7 +365,7 @@ function customJS(){
 
     // Layer Slider Testimonial
     if ($('#layer-testimonial').length) {
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#layer-testimonial').layerSlider({
                 sliderVersion: '6.0.0',
                 type: 'fullwidth',
@@ -404,17 +404,17 @@ function customJS(){
     // Click Search Icon and Open Search Field	
     var $srcicon = $('.search-pop span'),
         $srcfield = $('.search-form');
-    $srcicon.on('click', function(event) {
+    $srcicon.on('click', function (event) {
         event.preventDefault();
         $srcfield.addClass('visible');
         event.stopPropagation();
     });
 
-    $srcfield.on('click', function(event) {
+    $srcfield.on('click', function (event) {
         event.stopPropagation();
     });
 
-    $window.on('click', function(e) {
+    $window.on('click', function (e) {
         $srcfield.removeClass('visible');
     });
 
@@ -424,7 +424,7 @@ function customJS(){
     $('.one-page-nav a[href*="#"]')
         .not('.one-page-nav [href="#"]')
         .not('.one-page-nav [href="#0"]')
-        .click(function(event) {
+        .click(function (event) {
 
             if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
                 var target = $(this.hash);
@@ -433,7 +433,7 @@ function customJS(){
                     event.preventDefault();
                     $('html, body').animate({
                         scrollTop: target.offset().top
-                    }, 1000, function() {
+                    }, 1000, function () {
                         var $target = $(target);
                         $target.focus();
                         if ($target.is(":focus")) { // Checking if the target was focused
@@ -450,14 +450,14 @@ function customJS(){
 
 
     // Scroll top by clicking arrow up
-    $window.scroll(function() {
+    $window.scroll(function () {
         if ($(this).scrollTop() > 500) {
             $('#scroll').fadeIn();
         } else {
             $('#scroll').fadeOut();
         }
     });
-    $('#scroll').click(function() {
+    $('#scroll').click(function () {
         $("html, body").animate({
             scrollTop: 0
         }, 100);
@@ -469,7 +469,7 @@ function customJS(){
     // Fact Counter For Achivement Counting
     function factCounter() {
         if ($('.fact-counter').length) {
-            $('.fact-counter .count.animated').each(function() {
+            $('.fact-counter .count.animated').each(function () {
                 var $t = $(this),
                     n = $t.find(".count-num").attr("data-stop"),
                     r = parseInt($t.find(".count-num").attr("data-speed"), 10);
@@ -483,10 +483,10 @@ function customJS(){
                     }, {
                         duration: r,
                         easing: "linear",
-                        step: function() {
+                        step: function () {
                             $t.find(".count-num").text(Math.floor(this.countNum));
                         },
-                        complete: function() {
+                        complete: function () {
                             $t.find(".count-num").text(this.countNum);
                         }
                     });
@@ -560,36 +560,6 @@ function customJS(){
         });
     }
 
-
-
-    // Three Block Slide
-    if ($three_item.length) {
-        $three_item.owlCarousel({
-            loop: false,
-            margin: 24,
-            nav: true,
-            dots: true,
-            smartSpeed: 500,
-            autoplay: false,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                576: {
-                    items: 2
-                },
-                992: {
-                    items: 2
-                },
-                1200: {
-                    items: 3
-                },
-                1400: {
-                    items: 3
-                }
-            }
-        });
-    }
 
 
 
@@ -687,34 +657,6 @@ function customJS(){
 
 
 
-    // Single Text Carusel
-    if ($single_carusel_text.length) {
-        $single_carusel_text.owlCarousel({
-            loop: false,
-            margin: 30,
-            nav: false,
-            dots: true,
-            smartSpeed: 500,
-            autoplay: false,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                480: {
-                    items: 1
-                },
-                600: {
-                    items: 1
-                },
-                800: {
-                    items: 1
-                },
-                1200: {
-                    items: 1
-                }
-            }
-        });
-    }
 
 
     // Contact Form Validation
@@ -743,7 +685,7 @@ function customJS(){
                 message: "Please write your Message" //Write here your error message that you want to show in contact form
             },
 
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 $('#send').attr({
                     'disabled': 'true',
                     'value': 'Sending...'
@@ -752,18 +694,18 @@ function customJS(){
                     type: "POST",
                     url: "email.php",
                     data: $(form).serialize(),
-                    success: function() {
+                    success: function () {
                         $('#send').removeAttr('disabled').attr('value', 'Send');
                         $("#success").slideDown("slow");
-                        setTimeout(function() {
+                        setTimeout(function () {
                             $("#success").slideUp("slow");
                         }, 5000);
                         form.reset();
                     },
-                    error: function() {
+                    error: function () {
                         $('#send').removeAttr('disabled').attr('value', 'Send');
                         $("#error").slideDown("slow");
-                        setTimeout(function() {
+                        setTimeout(function () {
                             $("#error").slideUp("slow");
                         }, 5000);
                     }
@@ -791,18 +733,18 @@ function customJS(){
 
 
     // Start When document is Scrollig, do
-    $(window).on('scroll', function() {
+    $(window).on('scroll', function () {
         factCounter();
         headerStyle();
     });
 
 
     // Date Counting
-    $('[data-countdown]').each(function() {
+    $('[data-countdown]').each(function () {
         var $this = $(this),
             finalDate = $(this).data('countdown');
 
-        $this.countdown(finalDate, function(event) {
+        $this.countdown(finalDate, function (event) {
             $this.html(event.strftime('<ul><li><span>%D</span>Day</li> <li><span>%H</span>Hour</li> <li><span>%M</span>Min</li> <li><span>%S</span>Sec</li></ul>'));
         });
     });
@@ -814,7 +756,7 @@ function customJS(){
     var i;
 
     for (i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function() {
+        acc[i].addEventListener("click", function () {
             /* Toggle between adding and removing the "active" class,
             to highlight the button that controls the panel */
             this.classList.toggle("active");
@@ -828,4 +770,73 @@ function customJS(){
             }
         });
     }
+}
+
+function reviewCarousel() {
+    $single_carusel_text = $('.text-carusel')
+
+     // Single Text Carusel
+     if ($single_carusel_text.length) {
+        $single_carusel_text.owlCarousel({
+            loop: false,
+            margin: 30,
+            nav: false,
+            dots: true,
+            smartSpeed: 500,
+            autoplay: false,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                480: {
+                    items: 1
+                },
+                600: {
+                    items: 1
+                },
+                800: {
+                    items: 1
+                },
+                1200: {
+                    items: 1
+                }
+            }
+        });
+    }
+
+
+}
+
+function homeCarousel1(){
+    $three_item = $('.3block-carusel')
+
+     // Three Block Slide
+     if ($three_item.length) {
+        $three_item.owlCarousel({
+            loop: false,
+            margin: 24,
+            nav: true,
+            dots: true,
+            smartSpeed: 500,
+            autoplay: false,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                576: {
+                    items: 2
+                },
+                992: {
+                    items: 2
+                },
+                1200: {
+                    items: 3
+                },
+                1400: {
+                    items: 3
+                }
+            }
+        });
+    }
+
 }

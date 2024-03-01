@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'about', component: AboutComponent },
   { path: 'listing', component: ListingComponent },
-  { path: 'property-detail', component: PropertyDetailComponent },
+  { path: 'property-detail/:id', component: PropertyDetailComponent },
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 

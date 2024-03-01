@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AppserviceService } from '../appservice.service';
 import { finalize } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
 declare var customJS:any;
+declare var reviewCarousel:any;
+declare var homeCarousel1:any;
 
 @Component({
   selector: 'app-home',
@@ -10,6 +14,7 @@ declare var customJS:any;
 })
 export class HomeComponent implements OnInit {
 
+  baseUrl:any = environment.imageUrl;
   loader:boolean = false;
   sliderData: any;
   clientReviewData: any;
@@ -25,7 +30,6 @@ export class HomeComponent implements OnInit {
     this.getAllSlider();
     this.getClientReview();
     this.getAllProperty();
-    this.getPropertyBycategory();
   }
   
   //get all slider
@@ -33,7 +37,7 @@ export class HomeComponent implements OnInit {
     this.service.get("slider").pipe(finalize(() => this.loader = false )).subscribe((res:any)=>{
       if(res?.success){
         this.sliderData = res?.data;
-        // console.log(this.sliderData[0]?.slider_image?.path);
+        console.log(this.sliderData);
       }
     },error=>{
       this.service.openSnackBar(error, 'Failed');
@@ -45,7 +49,9 @@ export class HomeComponent implements OnInit {
     this.service.get("reviews").pipe(finalize(()=>this.loader = false)).subscribe((res:any)=>{
       if(res?.success){
         this.clientReviewData = res?.data;
-        // console.log(this.clientReviewData);
+        setTimeout(() => {
+          reviewCarousel();
+        }, 1000);
       }
     },error=>{
       this.service.openSnackBar(error, 'Failed');
@@ -57,7 +63,11 @@ export class HomeComponent implements OnInit {
     this.service.get("properties").pipe(finalize(()=>this.loader=false)).subscribe((res:any)=>{
       if(res?.success){
         this.propertyData = res?.data;
-        // console.log(this.propertyData);
+        console.log(this.propertyData);
+        this.categoryValue("all");
+        setTimeout(() => {
+          homeCarousel1();
+        }, 1000);
       }
     },error=>{
       this.service.openSnackBar(error, 'Failed');
@@ -66,7 +76,11 @@ export class HomeComponent implements OnInit {
 
   categoryValue(category:any){
     this.categoryValues = category;
-    this.getPropertyBycategory();
+    if(this.categoryValues == "all"){
+      this.propertyCategoryByCat = this.propertyData
+    }else{
+      this.getPropertyBycategory();
+    }
   }
 
   // get property by category
@@ -74,8 +88,11 @@ export class HomeComponent implements OnInit {
     this.service.get("getPropertyByCat/"+this.categoryValues).pipe(finalize(()=>this.loader = false)).subscribe((res:any)=>{
       if(res?.success){
         this.propertyCategoryByCat = res?.data;
-        console.log(this.propertyCategoryByCat);
+        // this.propertyData = this.propertyCategoryByCat;
+        console.log("gvh",this.propertyCategoryByCat);
       }
+    },error=>{
+      this.service.openSnackBar(error, 'Failed');
     })
   }
 

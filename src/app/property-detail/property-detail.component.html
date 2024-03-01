@@ -26,17 +26,20 @@
                     <!-- Slide 1-->
                     <div class="ls-slide" data-ls="duration:7500; transition2d:5; kenburnszoom:in; kenburnsscale:1.2;">
                         <img width="1920" height="1280" src="../../assets/assets/images/slider/5.png" class="ls-bg"
-                            alt="" /> </div>
+                            alt="" />
+                    </div>
 
                     <!-- Slide 2-->
                     <div class="ls-slide" data-ls="duration:7500; transition2d:5; kenburnszoom:out; kenburnsscale:1.2;">
                         <img width="1920" height="1280" src="../../assets/assets/images/slider/6.png" class="ls-bg"
-                            alt="" /> </div>
+                            alt="" />
+                    </div>
 
                     <!-- Slide 3-->
                     <div class="ls-slide" data-ls="duration:7500; transition2d:5; kenburnszoom:in; kenburnsscale:1.2;">
                         <img width="1920" height="1280" src="../../assets/assets/images/slider/8.png" class="ls-bg"
-                            alt="" /> </div>
+                            alt="" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -272,17 +275,17 @@
                         <div class="col-auto">
                             <div class="post-meta font-small text-uppercase list-color-primary">
                                 <a href="#" class="listing-ctg"><i
-                                        class="fa-solid fa-building"></i><span>Appartment</span></a>
+                                        class="fa-solid fa-building"></i><span>{{propertyData?.property_category}}</span></a>
                             </div>
-                            <h4 class="listing-title"><a href="property-single-v1.html">Apolo Family House Residense</a>
+                            <h4 class="listing-title"><a
+                                    href="property-single-v1.html">{{propertyData?.property_name}}</a>
                             </h4>
-                            <span class="listing-location"><i class="fas fa-map-marker-alt text-primary"></i> 2305 Tree
-                                Lane Overlandpk, MO 66210</span>
-                            <a href="#" class="d-block text-light hover-text-primary font-small mb-2">( 100 People
-                                Recommended )</a>
+                            <span class="listing-location"><i class="fas fa-map-marker-alt text-primary"></i>
+                                {{propertyData?.property_address}}, {{propertyData?.property_location}}</span>
                         </div>
                         <div class="col-auto ms-auto xs-m-0 text-end xs-text-start pb-4">
-                            <span class="listing-price">$1205500<small>( Price Only )</small></span>
+                            <span class="listing-price">₹{{propertyData?.property_price}}<small>( Price Only
+                                    )</small></span>
                             <span
                                 class="text-white font-mini px-2 rounded product-status ms-auto xs-m-0 py-1 bg-primary"><i
                                     class="fas fa-check"></i> Available</span>
@@ -314,13 +317,10 @@
 
                             <hr>
                             <div class="mt-2">
-                                <ul class="list-three-fold-width d-table">
-                                    <li><span class="font-500">Rooms:</span> 7</li>
-                                    <li><span class="font-500">Beds:</span> 5</li>
-                                    <li><span class="font-500">Area:</span> 1200 Sqft<sup>2</sup></li>
-                                    <li><span class="font-500">Baths:</span> 1</li>
-                                    <li><span class="font-500">Car Garage:</span> Yes ( 5 Capacity )</li>
-                                    <li><span class="font-500">Swimming:</span> Yes ( 1 Large )</li>
+                                <ul class="list-three-fold-width">
+                                    <li><span class="font-500">BedRooms:</span> {{propertyData?.no_of_bedrooms}}</li>
+                                    <li><span class="font-500">BathRooms:</span> {{propertyData?.no_of_bathrooms}}</li>
+                                    <li><span class="font-500">Swimming:</span> Yes </li>
                                 </ul>
                             </div>
                         </div>
@@ -328,35 +328,10 @@
                     <div class="row row-cols-1">
                         <div class="col">
                             <h5 class="mb-3">Description</h5>
-                            <p>Maecenas egestas quam et volutpat bibendum metus vulputate platea eleifend sed Integer
-                                dictum ultricies consectetuer nunc vivamus a. Eu mus justo magna lacinia purus sodales
-                                scelerisque. Sociosqu pede facilisi. Curae;
-                                lacinia id. Sociis pretium gravida auctor mus amet accumsan adipiscing id dignissim,
-                                potenti. Curae; massa ridiculus lobortis consectetuer condimentum mollis vulputate
-                                hymenaeos tellus egestas auctor dictumst imperdiet
-                                curae; quisque ut porta molestie dui duis blandit molestie etiam enim erat sociis
-                                lacinia litora phasellus sit. Ipsum Lacinia class enim pharetra interdum potenti tellus
-                                parturient. Potenti scelerisque erat facilisi
-                                mauris tortor, mattis euismod augue nascetur rutrum augue ipsum tortor cum Porta primis.
+                            <p>
+                                {{propertyData?.property_description}}
                             </p>
-                            <p>Praesent lectus facilisi tempor ridiculus arcu pharetra non tellus. Torquent nisl tempor.
-                                Magnis mollis lobortis nam, montes ut, consequat sed amet nullam, malesuada nascetur
-                                ornare sociosqu magna cum gravida quam tincidunt
-                                dapibus tellus felis nibh inceptos netus convallis facilisis torquent. Laoreet pulvinar
-                                ut. Fringilla lacus tellus lectus erat hac conubia eget quisque nisi aliquam nibh
-                                molestie nisi hymenaeos id phasellus metus
-                                duis inceptos arcu hendrerit ligula blandit lectus nisl fermentum sociosqu pretium eros
-                                libero.</p>
-                            <div class="short-description d-flex">
-                                <span class="me-4 font-500">Highlights:</span>
-                                <div class="short-description">
-                                    <ul class="list-style-tick">
-                                        <li>Regular Fit.</li>
-                                        <li>Full sleeves.</li>
-                                        <li>Machine wash, tumble dry.</li>
-                                    </ul>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -431,17 +406,7 @@
                         <div class="col">
                             <h5 class="mb-3">Property Features</h5>
                             <ul class="list-three-fold-width list-style-tick">
-                                <li>Fitness Lab and Room</li>
-                                <li>Swiming Pools</li>
-                                <li>Parking Facility</li>
-                                <li>Green Park View</li>
-                                <li>Playground Include</li>
-                                <li>Garden</li>
-                                <li>Kitchen Furniture</li>
-                                <li>Fire Security</li>
-                                <li>High Class Door</li>
-                                <li>Store Room</li>
-                                <li>Marble Floor</li>
+                                <li *ngFor="let amenity of propertyData?.amenities.split(', ')">{{amenity}}</li>
                             </ul>
                         </div>
                     </div>
@@ -705,30 +670,28 @@
                 <div class="property-overview border rounded bg-white p-30 mb-30">
                     <div class="row row-cols-1">
                         <div class="col">
-                            <h5 class="mb-4">Write A Review</h5>
-                            <div class="d-flex w-100 mb-5">
-                                <span>Your Rating:</span>
-                                <ul class="d-flex mx-2 text-primary font-12">
-                                    <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
-                                </ul>
-                            </div>
-                            <form class="contact_message form-boder" action="#" method="post" novalidate="novalidate">
+                            <h5 class="mb-4">Get Contact</h5>
+                            
+                            <form class="contact_message form-boder" [formGroup]="propertyForm" id="contact-form" (ngSubmit)="propertySubmit()" novalidate="novalidate">
                                 <div class="row g-3">
                                     <div class="col-md-6 col-sm-6">
                                         <input class="form-control" id="name" name="name" placeholder="Name"
-                                            type="text">
+                                            type="text" formControlName="name">
                                     </div>
+                                    
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" id="email" name="email" placeholder="Email Address"
-                                            type="text">
+                                        <input class="form-control" id="mobile" name="mobile" placeholder="Mobile Number"
+                                            type="text" formControlName="mobile" maxlength="10" minlength="10">
                                     </div>
+
+                                    <div class="col-md-12 col-sm-12">
+                                        <input class="form-control" id="email" name="email" placeholder="Email Address"
+                                            type="email" formControlName="email">
+                                    </div>
+
                                     <div class="col-md-12 col-sm-12">
                                         <textarea class="form-control" id="message" rows="5" name="message"
-                                            placeholder="Message"></textarea>
+                                            placeholder="Message" formControlName="message"></textarea>
                                     </div>
                                     <div class="col-md-12 col-sm-6">
                                         <button class="btn btn-primary" id="send" value="send"

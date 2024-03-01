@@ -1,0 +1,6 @@
+::ng-deep .ngx-pagination .current {
+    background: var(--theme-primary-color) !important;
+    border: none !important;
+    color: var(--theme-white-color) !important;
+    border-radius: 50% !important;
+}

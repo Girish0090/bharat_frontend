@@ -40,232 +40,29 @@
     <div class="row">
       <div class="col">
         <div class="3block-carusel nav-disable owl-carousel">
-          <div class="item">
+          <div class="item" *ngFor="let item of propertyData">
             <!-- Property Grid -->
-            <div class="property-grid-1 property-block bg-white transation-this">
-              <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom">
-                <div class="cata position-absolute"><span class="sale bg-secondary text-white">For Sale</span></div>
-                <a href="property-single-v1.html"><img src="assets/assets/images/property_grid/property-grid-1.png"
-                    alt="Image Not Found!"></a>
-                <a href="#" class="listing-ctg text-white"><i
-                    class="fa-solid fa-building"></i><span>Apartment</span></a>
-                <ul class="position-absolute quick-meta">
-                  <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li>
-                  <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                  <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i
-                        class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
-                </ul>
-              </div>
-              <div class="property_text p-4">
-                <span class="listing-price">$1850<small> ( Monthly )</small></span>
-                <h5 class="listing-title"><a href="property-single-v1.html">Family House Residense</a></h5>
-                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 4213 Avenue South Burlington, VT
-                  05403 </span>
-                <ul class="d-flex quantity font-fifteen">
-                  <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>7</li>
-                  <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>5</li>
-                  <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
-                  <li title="Gas"><span><i class="fa-solid fa-fire"></i></span>Yes</li>
-                </ul>
-              </div>
-              <div class="d-flex align-items-center post-meta mt-2 py-3 px-4 border-top">
-                <div class="agent">
-                  <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2"
-                      src="assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                </div>
-                <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <!-- Property Grid -->
-            <div class="property-grid-1 property-block bg-white transation-this">
+            <div class="property-grid-1 property-block bg-white transation-this hover-shadow">
               <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom">
                 <div class="cata position-absolute">
-                  <span class="sale bg-secondary text-white">For Sale</span>
-                  <span class="featured bg-primary text-white">Featured</span>
+                  <span class="sale bg-secondary text-white">{{item?.property_type}}</span>
                 </div>
-                <a href="property-single-v1.html"><img src="assets/assets/images/property_grid/property-grid-2.png"
+                <a routerLink="/property-detail/{{item?._id}}"><img src="{{baseUrl}}{{item?.property_image[0]?.path}}"
                     alt="Image Not Found!"></a>
-                <a href="#" class="listing-ctg text-white"><i class="fa-solid fa-building"></i><span>Condo</span></a>
-                <ul class="position-absolute quick-meta">
-                  <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li>
-                  <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                  <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i
-                        class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
-                </ul>
+                <a class="listing-ctg text-white"><i
+                    class="fa-solid fa-building"></i><span>{{item?.property_category}}</span></a>
+
               </div>
               <div class="property_text p-4">
-                <span class="listing-price">$120,5500<small> ( One Time )</small></span>
-                <h5><a class="text-secondary" href="property-single-v1.html">Luxury Condos Riverside</a></h5>
-                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 2305 Tree Frog Lane Overlandpk,
-                  MO 66210</span>
+                <span class="listing-price">₹{{item?.property_price}}</span>
+                <h5 class="listing-title"><a routerLink="/property-detail/{{item?._id}}">{{item?.property_name}}</a></h5>
+                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> {{item?.property_location}} </span>
                 <ul class="d-flex quantity font-fifteen">
-                  <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>7</li>
-                  <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>5</li>
-                  <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
-                  <li title="Gas"><span><i class="fa-solid fa-fire"></i></span>Yes</li>
+                  <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>{{item?.no_of_bedrooms}}</li>
+                  <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>{{item?.no_of_bathrooms}}</li>
                 </ul>
               </div>
-              <div class="d-flex align-items-center post-meta mt-2 py-3 px-4 border-top">
-                <div class="agent">
-                  <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2"
-                      src="assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                </div>
-                <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <!-- Property Grid -->
-            <div class="property-grid-1 property-block bg-white transation-this">
-              <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom">
-                <div class="cata position-absolute">
-                  <span class="sale bg-secondary text-white">For Rent</span>
-                </div>
-                <a href="property-single-v1.html"><img src="assets/assets/images/property_grid/property-grid-3.png"
-                    alt="Image Not Found!"></a>
-                <a href="#" class="listing-ctg text-white"><i class="fa-solid fa-building"></i><span>Villa</span></a>
-                <ul class="position-absolute quick-meta">
-                  <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li>
-                  <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                  <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i
-                        class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
-                </ul>
-              </div>
-              <div class="property_text p-4">
-                <span class="listing-price">$3450<small> ( Monthly )</small></span>
-                <h5><a class="text-secondary" href="property-single-v1.html">Gorgeous Villa Bay View</a></h5>
-                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 2305 Tree Frog Lane Overlandpk,
-                  MO 66210</span>
-                <ul class="d-flex quantity font-fifteen">
-                  <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>7</li>
-                  <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>5</li>
-                  <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
-                  <li title="Gas"><span><i class="fa-solid fa-fire"></i></span>Yes</li>
-                </ul>
-              </div>
-              <div class="d-flex align-items-center post-meta mt-2 py-3 px-4 border-top">
-                <div class="agent">
-                  <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2"
-                      src="assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                </div>
-                <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <!-- Property Grid -->
-            <div class="property-grid-1 property-block bg-white transation-this">
-              <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom">
-                <div class="cata position-absolute">
-                  <span class="sale bg-secondary text-white">For Rent</span>
-                </div>
-                <a href="property-single-v1.html"><img src="assets/assets/images/property_grid/property-grid-4.png"
-                    alt="Image Not Found!"></a>
-                <a href="#" class="listing-ctg text-white"><i class="fa-solid fa-building"></i><span>Condo</span></a>
-                <ul class="position-absolute quick-meta">
-                  <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li>
-                  <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                  <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i
-                        class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
-                </ul>
-              </div>
-              <div class="property_text p-4">
-                <span class="listing-price">$1,0450<small> ( Monthly )</small></span>
-                <h5><a class="text-secondary" href="property-single-v1.html">New Developed Condos</a></h5>
-                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 2305 Tree Frog Lane Overlandpk,
-                  MO 66210</span>
-                <ul class="d-flex quantity font-fifteen">
-                  <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>7</li>
-                  <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>5</li>
-                  <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
-                  <li title="Gas"><span><i class="fa-solid fa-fire"></i></span>Yes</li>
-                </ul>
-              </div>
-              <div class="d-flex align-items-center post-meta mt-2 py-3 px-4 border-top">
-                <div class="agent">
-                  <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2"
-                      src="assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                </div>
-                <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <!-- Property Grid -->
-            <div class="property-grid-1 property-block bg-white transation-this">
-              <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom">
-                <div class="cata position-absolute"><span class="sale bg-secondary text-white">For Sale</span></div>
-                <a href="property-single-v1.html"><img src="assets/assets/images/property_grid/property-grid-1.png"
-                    alt="Image Not Found!"></a>
-                <a href="#" class="listing-ctg text-white"><i
-                    class="fa-solid fa-building"></i><span>Apartment</span></a>
-                <ul class="position-absolute quick-meta">
-                  <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li>
-                  <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                  <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i
-                        class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
-                </ul>
-              </div>
-              <div class="property_text p-4">
-                <span class="listing-price">$1850<small> ( Monthly )</small></span>
-                <h5><a class="text-secondary" href="property-single-v1.html">Family House Residense</a></h5>
-                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 4213 Duff Avenue South
-                  Burlington, VT 05403 </span>
-                <ul class="d-flex quantity font-fifteen">
-                  <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>7</li>
-                  <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>5</li>
-                  <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
-                  <li title="Gas"><span><i class="fa-solid fa-fire"></i></span>Yes</li>
-                </ul>
-              </div>
-              <div class="d-flex align-items-center post-meta mt-2 py-3 px-4 border-top">
-                <div class="agent">
-                  <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2"
-                      src="assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                </div>
-                <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <!-- Property Grid -->
-            <div class="property-grid-1 property-block bg-white transation-this">
-              <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom">
-                <div class="cata position-absolute">
-                  <span class="sale bg-secondary text-white">For Sale</span>
-                  <span class="featured bg-primary text-white">Featured</span>
-                </div>
-                <a href="property-single-v1.html"><img src="assets/assets/images/property_grid/property-grid-2.png"
-                    alt="Image Not Found!"></a>
-                <a href="#" class="listing-ctg text-white"><i class="fa-solid fa-building"></i><span>Condos</span></a>
-                <ul class="position-absolute quick-meta">
-                  <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li>
-                  <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                  <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i
-                        class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
-                </ul>
-              </div>
-              <div class="property_text p-4">
-                <span class="listing-price">$100,8850<small> ( One Time )</small></span>
-                <h5><a class="text-secondary" href="property-single-v1.html">Luxury Condos</a></h5>
-                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 2305 Tree Frog Lane Overlandpk,
-                  MO 66210</span>
-                <ul class="d-flex quantity font-fifteen">
-                  <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>7</li>
-                  <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>5</li>
-                  <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
-                  <li title="Gas"><span><i class="fa-solid fa-fire"></i></span>Yes</li>
-                </ul>
-              </div>
-              <div class="d-flex align-items-center post-meta mt-2 py-3 px-4 border-top">
-                <div class="agent">
-                  <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2"
-                      src="assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                </div>
-                <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-              </div>
+
             </div>
           </div>
         </div>
@@ -370,243 +167,35 @@
     <div class="row">
       <div class="col">
         <div class="mix-element row row-cols-lg-3 row-cols-md-2 row-cols-1 mt-4">
-          <div class="col mix house land mb-30">
+          <div class="col mix house land mb-30" *ngFor="let item of propertyCategoryByCat">
             <!-- Property Grid -->
             <div class="property-grid-1 property-block bg-white transation-this hover-shadow">
               <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom">
                 <div class="cata position-absolute">
-                  <span class="sale bg-secondary text-white">For Sale</span>
-                  <span class="featured bg-primary text-white">Featured</span>
+                  <span class="sale bg-secondary text-white">{{item?.property_type}}</span>
                 </div>
-                <a href="property-single-v1.html"><img src="assets/assets/images/property_grid/property-grid-1.png"
+                <a routerLink="/property-detail/{{item?._id}}"><img src="{{baseUrl}}{{item?.property_image[0]?.path}}"
                     alt="Image Not Found!"></a>
-                <a href="#" class="listing-ctg text-white"><i
-                    class="fa-solid fa-building"></i><span>Apartment</span></a>
-                <ul class="position-absolute quick-meta">
-                  <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li>
-                  <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                  <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i
-                        class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
-                </ul>
-              </div>
-              <div class="property_text p-4">
-                <span class="listing-price">$1850<small> ( Monthly )</small></span>
-                <h5 class="listing-title"><a href="property-single-v1.html">Family House Residense</a></h5>
-                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 4213 Duff Avenue South
-                  Burlington, VT 05403 </span>
-                <ul class="d-flex quantity font-fifteen">
-                  <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>7</li>
-                  <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>5</li>
-                  <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
-                  <li title="Gas"><span><i class="fa-solid fa-fire"></i></span>Yes</li>
-                </ul>
-              </div>
-              <div class="d-flex align-items-center post-meta mt-2 py-3 px-4 border-top">
-                <div class="agent">
-                  <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2"
-                      src="assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                </div>
-                <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="col mix office mb-30">
-            <!-- Property Grid -->
-            <div class="property-grid-1 property-block bg-white transation-this hover-shadow">
-              <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom">
-                <div class="cata position-absolute">
-                  <span class="sale bg-secondary text-white">For Rent</span>
-                  <span class="featured bg-primary text-white">Featured</span>
-                </div>
-                <a href="property-single-v1.html"><img src="assets/assets/images/property_grid/property-grid-2.png"
-                    alt="Image Not Found!"></a>
-                <a href="#" class="listing-ctg text-white"><i class="fa-solid fa-building"></i><span>Villa</span></a>
-                <ul class="position-absolute quick-meta">
-                  <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li>
-                  <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                  <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i
-                        class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
-                </ul>
-              </div>
-              <div class="property_text p-4">
-                <span class="listing-price">$3450<small> ( Monthly )</small></span>
-                <h5 class="listing-title"><a href="property-single-v1.html">Gorgeous Villa Bay View</a></h5>
-                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 2305 Tree Frog Lane Overlandpk,
-                  MO 66210</span>
-                <ul class="d-flex quantity font-fifteen">
-                  <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>7</li>
-                  <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>5</li>
-                  <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
-                  <li title="Gas"><span><i class="fa-solid fa-fire"></i></span>Yes</li>
-                </ul>
-              </div>
-              <div class="d-flex align-items-center post-meta mt-2 py-3 px-4 border-top">
-                <div class="agent">
-                  <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2"
-                      src="assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                </div>
-                <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="col mix appartment land mb-30">
-            <!-- Property Grid -->
-            <div class="property-grid-1 property-block bg-white transation-this hover-shadow">
-              <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom">
-                <div class="cata position-absolute">
-                  <span class="sale bg-secondary text-white">For Rent</span>
-                  <span class="featured bg-primary text-white">Featured</span>
-                </div>
-                <a href="property-single-v1.html"><img src="assets/assets/images/property_grid/property-grid-3.png"
-                    alt="Image Not Found!"></a>
-                <a href="#" class="listing-ctg text-white"><i class="fa-solid fa-building"></i><span>Condos</span></a>
-                <ul class="position-absolute quick-meta">
-                  <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li>
-                  <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                  <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i
-                        class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
-                </ul>
-              </div>
-              <div class="property_text p-4">
-                <span class="listing-price">$1,0450<small> ( Monthly )</small></span>
-                <h5 class="listing-title"><a href="property-single-v1.html">New Developed Condos</a></h5>
-                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 2305 Tree Frog Lane Overlandpk,
-                  MO 66210</span>
-                <ul class="d-flex quantity font-fifteen">
-                  <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>7</li>
-                  <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>5</li>
-                  <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
-                  <li title="Gas"><span><i class="fa-solid fa-fire"></i></span>Yes</li>
-                </ul>
-              </div>
-              <div class="d-flex align-items-center post-meta mt-2 py-3 px-4 border-top">
-                <div class="agent">
-                  <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2"
-                      src="assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                </div>
-                <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="col mix house mb-30">
-            <!-- Property Grid -->
-            <div class="property-grid-1 property-block bg-white transation-this hover-shadow">
-              <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom">
-                <div class="cata position-absolute">
-                  <span class="sale bg-secondary text-white">For Rent</span>
-                  <span class="featured bg-primary text-white">Featured</span>
-                </div>
-                <a href="property-single-v1.html"><img src="assets/assets/images/property_grid/property-grid-4.png"
-                    alt="Image Not Found!"></a>
-                <a href="#" class="listing-ctg text-white"><i
-                    class="fa-solid fa-building"></i><span>Apartment</span></a>
-                <ul class="position-absolute quick-meta">
-                  <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li>
-                  <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                  <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i
-                        class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
-                </ul>
-              </div>
-              <div class="property_text p-4">
-                <span class="listing-price">$1850<small> ( Monthly )</small></span>
-                <h5 class="listing-title"><a href="property-single-v1.html">Family House Residense</a></h5>
-                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 2305 Tree Frog Lane Overlandpk,
-                  MO 66210</span>
-                <ul class="d-flex quantity font-fifteen">
-                  <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>7</li>
-                  <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>5</li>
-                  <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
-                  <li title="Gas"><span><i class="fa-solid fa-fire"></i></span>Yes</li>
-                </ul>
-              </div>
-              <div class="d-flex align-items-center post-meta mt-2 py-3 px-4 border-top">
-                <div class="agent">
-                  <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2"
-                      src="assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                </div>
-                <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="col mix house land mb-30">
-            <!-- Property Grid -->
-            <div class="property-grid-1 property-block bg-white transation-this hover-shadow">
-              <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom">
-                <div class="cata position-absolute">
-                  <span class="sale bg-secondary text-white">For Sale</span>
-                  <span class="featured bg-primary text-white">Featured</span>
-                </div>
-                <a href="property-single-v1.html"><img src="assets/assets/images/property_grid/property-grid-5.png"
-                    alt="Image Not Found!"></a>
-                <a href="#" class="listing-ctg text-white"><i class="fa-solid fa-building"></i><span>Condos</span></a>
-                <ul class="position-absolute quick-meta">
-                  <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li>
-                  <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                  <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i
-                        class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
-                </ul>
-              </div>
-              <div class="property_text p-4">
-                <span class="listing-price">$1,20,5500<small> ( One Time )</small></span>
-                <h5 class="listing-title"><a href="property-single-v1.html">Condos Infront of River</a></h5>
-                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 2305 Tree Frog Lane Overlandpk,
-                  MO 66210</span>
-                <ul class="d-flex quantity font-fifteen">
-                  <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>7</li>
-                  <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>5</li>
-                  <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
-                  <li title="Gas"><span><i class="fa-solid fa-fire"></i></span>Yes</li>
-                </ul>
-              </div>
-              <div class="d-flex align-items-center post-meta mt-2 py-3 px-4 border-top">
-                <div class="agent">
-                  <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2"
-                      src="assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                </div>
-                <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="col mix appartment mb-30">
-            <!-- Property Grid -->
-            <div class="property-grid-1 property-block bg-white transation-this hover-shadow">
-              <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom">
-                <div class="cata position-absolute">
-                  <span class="sale bg-secondary text-white">For Rent</span>
-                  <span class="featured bg-primary text-white">Featured</span>
-                </div>
-                <a href="property-single-v1.html"><img src="assets/assets/images/property_grid/property-grid-6.png"
-                    alt="Image Not Found!"></a>
-                <a href="#" class="listing-ctg text-white"><i class="fa-solid fa-building"></i><span>Condos</span></a>
-                <ul class="position-absolute quick-meta">
-                  <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li>
-                  <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                  <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i
-                        class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
-                </ul>
-              </div>
-              <div class="property_text p-4">
-                <span class="listing-price">$6500<small> ( Monthly )</small></span>
-                <h5 class="listing-title"><a href="property-single-v1.html">New Developed Condos</a></h5>
-                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 2305 Tree Frog Lane Overlandpk,
-                  MO 66210</span>
-                <ul class="d-flex quantity font-fifteen">
-                  <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>7</li>
-                  <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>5</li>
-                  <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
-                  <li title="Gas"><span><i class="fa-solid fa-fire"></i></span>Yes</li>
-                </ul>
-              </div>
-              <div class="d-flex align-items-center post-meta mt-2 py-3 px-4 border-top">
-                <div class="agent">
-                  <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2"
-                      src="assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                </div>
-                <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-              </div>
-            </div>
+                <a class="listing-ctg text-white"><i
+                    class="fa-solid fa-building"></i><span>{{item?.property_category}}</span></a>
 
+              </div>
+              <div class="property_text p-4">
+                <span class="listing-price">₹{{item?.property_price}}</span>
+                <h5 class="listing-title"><a routerLink="/property-detail/{{item?._id}}">{{item?.property_name}}</a></h5>
+                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> {{item?.property_location}} </span>
+                <ul class="d-flex quantity font-fifteen">
+                  <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>{{item?.no_of_bedrooms}}</li>
+                  <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>{{item?.no_of_bathrooms}}</li>
+                </ul>
+              </div>
+
+            </div>
           </div>
+        </div>
+
+        <div *ngIf="propertyCategoryByCat?.length == 0">
+          <h2 class="text-center main-title">No Property Found</h2>
         </div>
       </div>
     </div>
@@ -659,39 +248,20 @@
     <div class="row">
       <div class="col mb-5">
         <span class="text-primary tagline pb-2 d-table m-auto">Testimonial</span>
-        <h2 class="down-line w-50 mx-auto mb-4 text-center w-sm-100">Whay Client Says About Us</h2>
+        <h2 class="down-line w-50 mx-auto mb-4 text-center w-sm-100">What Client Says About Us</h2>
       </div>
     </div>
     <div class="row justify-content-center">
       <div class="col-lg-7">
         <div class="testimonial-simple text-center px-5">
           <div class="text-carusel owl-carousel">
-            <div class="item">
-              <i class="flaticon-right-quote flat-large text-primary d-table mx-auto"></i>
-              <blockquote class="text-secondary fs-5 fst-italic">“ Posuere mus curabitur parturient scelerisque
-                suspendisse elementum facilisis dignissim non purus torquent turpis interdum hendrerit erat ultrices
-                pretium risus elementum. Fringilla aliquet mattis lacinia quam a montes
-                maecenas parturient urna varius. Sollicitudin pede sapien taciti dui.”</blockquote>
-              <h4 class="mt-4 font-400">Mark Wiggins</h4>
-              <span class="text-primary font-fifteen">CEO ( Grodins Group )</span>
-            </div>
-            <div class="item">
-              <i class="flaticon-right-quote flat-large text-primary d-table mx-auto"></i>
-              <blockquote class="text-secondary fs-5 fst-italic">“ Posuere mus curabitur parturient scelerisque
-                suspendisse elementum facilisis dignissim non purus torquent turpis interdum hendrerit erat ultrices
-                pretium risus elementum. Fringilla aliquet mattis lacinia quam a montes
-                maecenas parturient urna varius. Sollicitudin pede sapien taciti dui.”</blockquote>
-              <h4 class="mt-4 font-400">Mark Wiggins</h4>
-              <span class="text-primary font-fifteen">CEO ( Grodins Group )</span>
-            </div>
-            <div class="item">
-              <i class="flaticon-right-quote flat-large text-primary d-table mx-auto"></i>
-              <blockquote class="text-secondary fs-5 fst-italic">“ Posuere mus curabitur parturient scelerisque
-                suspendisse elementum facilisis dignissim non purus torquent turpis interdum hendrerit erat ultrices
-                pretium risus elementum. Fringilla aliquet mattis lacinia quam a montes
-                maecenas parturient urna varius. Sollicitudin pede sapien taciti dui.”</blockquote>
-              <h4 class="mt-4 font-400">Mark Wiggins</h4>
-              <span class="text-primary font-fifteen">CEO ( Grodins Group )</span>
+            <div class="item" *ngFor="let item of clientReviewData">
+              <!-- <i class="flaticon-right-quote flat-large text-primary d-table mx-auto"></i> -->
+              <img class="mx-auto" src="{{baseUrl}}{{item?.user_image?.path}}" alt=""
+                style="height: 100px; width: 100px; border-radius: 50%;">
+              <blockquote class="text-secondary fs-5 fst-italic">“ {{item?.description}}”</blockquote>
+              <h4 class="mt-4 font-400">{{item?.userName}}</h4>
+              <span class="text-primary font-fifteen">({{item?.designation}})</span>
             </div>
           </div>
         </div>
@@ -733,76 +303,8 @@
 </div>
 <!--============== Reg Banner End ==============-->
 
-<!--============== Pricing Table Content Start ==============-->
-<div class="full-row">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-5 col-md-12 mb-5">
-        <div class="text-secondary mb-5">
-          <span class="text-primary text-uppercase pb-2 d-table tagline-2 font-fifteen">Event Publish Pricing</span>
-          <h3 class="text-secondary mb-4">Choose the All-inclusive Pakages Best Suited to You</h3>
-        </div>
-      </div>
-    </div>
-    <div class="row divider-col-3 row-cols-xl-3 row-cols-md-2 row-cols-1">
-      <div class="col">
-        <div class="px-5 sm-px-0 mb-5">
-          <h4 class="text-start font-400">Personal</h4>
-          <div class="text-start"><span>Free Preview up to ten attendees</span></div>
-          <ul class="list-style-tick my-4">
-            <li>Only pay when you publish</li>
-            <li>Full featured event app</li>
-            <li>Unlimited featured use</li>
-            <li>24/7 supports</li>
-            <li>Event analytics</li>
-          </ul>
-          <div class="text-start"><span class="h2 font-400"><sup>$</sup>699</span></div>
-          <div class="text-start my-3"><span>Publish instantly in bluebird app</span></div>
-          <a href="#" class="btn btn-secondary d-table">Get Started</a>
-        </div>
-      </div>
-      <div class="col">
-        <div class="px-5 sm-px-0 mb-5">
-          <h4 class="text-start font-400">Corporate</h4>
-          <div class="text-start"><span>Active for 12 month</span></div>
-          <ul class="list-style-tick my-4">
-            <li>Only pay when you publish</li>
-            <li>Full featured event app</li>
-            <li>Unlimited featured use</li>
-            <li>24/7 supports</li>
-            <li>Event analytics</li>
-          </ul>
-          <div class="text-start"><span class="h2 font-400"><sup>$</sup>1,699</span></div>
-          <div class="text-start my-3"><span>Publish instantly in bluebird app</span></div>
-          <a href="#" class="btn btn-secondary d-table">Get Started</a>
-        </div>
-      </div>
-      <div class="col">
-        <div class="px-5 sm-px-0 mb-5">
-          <h4 class="text-start font-400">Regular</h4>
-          <div class="text-start"><span>Unlimited event and time</span></div>
-          <ul class="list-style-tick my-4">
-            <li>Only pay when you publish</li>
-            <li>Full featured event app</li>
-            <li>Unlimited featured use</li>
-            <li>24/7 supports</li>
-            <li>Event analytics</li>
-          </ul>
-          <div class="text-start"><span class="h2 font-400"><sup>$</sup>599</span>/mo</div>
-          <div class="form-check form-switch d-flex align-items-center my-3">
-            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-            <label class="form-check-label" for="flexSwitchCheckDefault">Annually</label>
-          </div>
-          <a href="#" class="btn btn-secondary d-table">Get Started</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!--============== Pricing Table Content End ==============-->
-
 <!--============== Register Section Start ==============-->
-<div class="full-row p-0" style="margin-bottom: -50px; z-index: 100">
+<div class="full-row mt-2 p-0" style="margin-bottom: -50px; z-index: 100">
   <div class="container">
     <div class="row">
       <div class="col">
@@ -824,92 +326,4 @@
 <!--============== Register Section End ==============-->
 
 
-
-<!--============== Modal Start ==============-->
-<div class="overlay-dark modal fade quick-view-modal" id="quick-view">
-  <div class="modal-dialog modal-dialog-centered modal-xl">
-    <div class="modal-content">
-      <div class="close view-close">
-        <span aria-hidden="true">&times;</span>
-      </div>
-      <div class="modal-body property-block summary p-3">
-        <div class="row row-cols-xl-2 row-cols-1">
-          <div class="col">
-            <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom m-2">
-              <div class="cata position-absolute">
-                <span class="sale bg-secondary text-white">For Rent</span>
-                <span class="featured bg-primary text-white">Featured</span>
-              </div>
-              <a href="#"><img class="w-100" src="assets/assets/images/property/2.png" alt=""></a>
-              <ul class="position-absolute quick-meta">
-                <li><a href="#"><i class="flaticon-transfer flat-mini"></i></a></li>
-                <li><a href="#"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                <li><a href="#"><i class="flaticon-share flat-mini"></i></a></li>
-                <li><a href="#"><i class="flaticon-printer flat-mini"></i></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col">
-            <div class="property_text transation py-3 pe-3">
-              <span class="d-inline-block text-primary">Condos</span>
-              <h5 class="modal-title mb-1" id="staticBackdropLabel"><a href="#"
-                  class="text-secondary hover-text-primary transation">Luxury Condos Infront of the street of Green
-                  Park</a></h5>
-              <span class="mt-1 mb-3 d-block font-fifteen"><i class="fas fa-map-marker-alt text-primary"></i> 2305
-                Tree Frog Lane Overlandpk, MO 66210</span>
-              <a href="#" class="d-block text-light hover-text-primary font-small mb-2">( 100 People Recommended )</a>
-              <div class="d-flex">
-                <span class="text-secondary font-large">$5600 - $8300/<small>mo</small></span>
-                <span class="text-white font-mini px-2 rounded product-status ms-5 my-1 bg-primary"><i
-                    class="fas fa-check"></i> Available</span>
-              </div>
-              <div class="product-offers mt-3">
-                <ul class="product-offers-list">
-                  <li class="product-offer-item"> <strong>Special Price </strong>Get extra 19% off (price inclusive of
-                    discount)</li>
-                  <li class="product-offer-item"> <strong>Bank Offer </strong> 10% instant discount on VISA Cards</li>
-                  <li class="product-offer-item"> <strong>No cost EMI $49/month.</strong> Standard EMI also available
-                  </li>
-                </ul>
-              </div>
-              <hr>
-              <div class="quantity">
-                <ul class="d-flex">
-                  <li><span>Rooms:</span> 5</li>
-                  <li><span>Beds:</span> 3</li>
-                  <li><span>Bathrooms:</span> 2</li>
-                  <li><span>Garage:</span> 1</li>
-                  <li><span>Area:</span> 1100 Sqft</li>
-                </ul>
-              </div>
-              <h5 class="text-secondary my-3">Description</h5>
-              <p>Bibendum purus aenean mus aenean eu interdum nonummy ipsum ad consequat. Dui eros donec faucibus
-                convallis tempus rutrum id donec mus hymenaeos placerat congue curae mauris turpis gravida viverra
-                consequat consequat
-                gravida luctus.</p>
-              <div class="short-description d-flex">
-                <span class="me-4"><b>Highlights:</b></span>
-                <div class="short-description">
-                  <ul class="list-style-tick">
-                    <li>Regular Fit.</li>
-                    <li>Full sleeves.</li>
-                    <li>Machine wash, tumble dry.</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="d-flex align-items-center post-meta mt-2 py-3 border-top">
-                <div class="agent">
-                  <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2"
-                      src="assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                </div>
-                <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!--============== Modal End ==============-->
 <app-loader *ngIf="loader"></app-loader>

@@ -5,7 +5,7 @@
             <div class="col">
                 <nav aria-label="breadcrumb" class="mb-2">
                     <ol class="breadcrumb mb-0 bg-transparent p-0">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
                         <li class="breadcrumb-item active text-primary" aria-current="page">Listing</li>
                     </ol>
                 </nav>
@@ -23,45 +23,51 @@
             <div class="col-lg-12">
                 <form class="quick-search form-icon-right position-relative" action="#" method="post">
                     <div class="row row-cols-lg-6 row-cols-md-4 row-cols-1 g-3">
-                       
+
                         <div class="col">
-                            <select class="form-control">
-                                <option>Property Types</option>
-                                <option>House</option>
-                                <option>Office</option>
-                                <option>Appartment</option>
-                                <option>Condos</option>
-                                <option>Villa</option>
-                                <option>Small Family</option>
-                                <option>Single Room</option>
+                            <label for="pType">Property Category</label>
+                            <select id="pType" class="form-control" name="selectedCategory"
+                                [(ngModel)]="selectedCategory" (change)="selectedType=''">
+                                <option disabled selected value="">Choose Property Category</option>
+                                <option value="residential">Residential</option>
+                                <option value="commercial">Commercial</option>
+                                <option value="industrial">Industrial</option>
+                                <option value="villa">Villa</option>
                             </select>
                         </div>
                         <div class="col">
-                            <select class="form-control">
-                                <option>Property Status</option>
-                                <option>For Rent</option>
-                                <option>For Sale</option>
+                            <label for="pStatus">Property Type</label>
+                            <select id="pStatus" class="form-control" name="selectedType" [(ngModel)]="selectedType"
+                                (change)="selectedCategory=''">
+                                <option disabled selected value="">Choose Property Type</option>
+                                <option value="rent">For Rent</option>
+                                <option value="sale">For Sale</option>
                             </select>
                         </div>
                         <div class="col">
                             <div class="position-relative">
+                                <label for="location">Location</label>
                                 <input type="text" class="form-control" name="location" placeholder="Location">
                                 <i class="flaticon-placeholder flat-mini icon-font y-center text-dark"></i>
                             </div>
                         </div>
                         <div class="col">
                             <div class="position-relative">
-                                <button class="form-control price-toggle toggle-btn" data-target="#data-range-price">Price <i class="fas fa-angle-down font-mini icon-font y-center text-dark"></i></button>
+                                <label for="data-range-price">Price Range</label>
+                                <button class="form-control price-toggle toggle-btn"
+                                    data-target="#data-range-price">Price <i
+                                        class="fas fa-angle-down font-mini icon-font y-center text-dark"></i></button>
                                 <div id="data-range-price" class="price_range price-range-toggle">
                                     <div class="area-filter price-filter">
                                         <span class="price-slider">
-                                        <input class="filter_price" type="text" name="price" value="0;10000000" />
-                                    </span>
+                                            <input class="filter_price" type="text" name="price" value="0;10000000" />
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col">
+                            <label for="bedrooms">Bedrooms</label>
                             <select class="form-control">
                                 <option>Bedrooms</option>
                                 <option>1</option>
@@ -75,6 +81,7 @@
                             </select>
                         </div>
                         <div class="col">
+                            <label for="bathrooms">Bathrooms</label>
                             <select class="form-control">
                                 <option>Bathrooms</option>
                                 <option>1</option>
@@ -88,9 +95,9 @@
                             </select>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col text-center mt-2">
-                            <button class="btn btn-primary w-25 mx-auto">Search</button>
+                            <button class="btn btn-primary w-25 mx-auto" (click)="getSearchedProperty()">Search</button>
                         </div>
                     </div>
                 </form>
@@ -107,433 +114,59 @@
             <div class="col">
                 <div class="woo-filter-bar p-3 d-flex flex-wrap justify-content-between">
                     <div class="d-flex flex-wrap">
-                     
+                        <div class="woocommerce-ordering">
+                            <select name="orderby1" (change)="getSorting($event)">
+                                <option disabled selected>Sort By :-</option>
+                                <option value="relevance">Relevance</option>
+                                <option value="asc">Name A-Z</option>
+                                <option value="desc">Name Z-A</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="d-flex">
-                        <span class="woocommerce-ordering-pages me-4 font-fifteen">Showing at 15 result</span>
+                        <!-- <h5>Showing 1-{{projectList?.length}} of {{projectList?.length}} results</h5> -->
+
+                        <span class="woocommerce-ordering-pages me-4 font-fifteen">Showing {{propertyData.length}} result</span>
                         <form class="view-category" method="get">
-                            <button title="List" class="list-view" value="list" name="display" type="submit"><i class="flaticon-grid-1 flat-mini"></i></button>
-                            <button title="Grid" class="grid-view active" value="grid" name="display" type="submit"><i class="flaticon-grid flat-mini"></i></button>
+                            <button title="List" class="list-view" value="list" name="display" type="submit"><i
+                                    class="flaticon-grid-1 flat-mini"></i></button>
+                            <!-- <button title="Grid" class="grid-view active" value="grid" name="display" type="submit"><i
+                                    class="flaticon-grid flat-mini"></i></button> -->
                         </form>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row row-cols-xl-3 row-cols-md-2 row-cols-1">
-            <div class="col">
+            <div class="col" *ngFor="let item of propertyData | paginate: { itemsPerPage: 10 , currentPage: p }">
                 <!-- Property Grid -->
                 <div class="property-grid-1 bg-white property-block border transation-this hover-shadow mb-30">
-                    <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom m-2">
-                        <div class="cata position-absolute"><span class="sale bg-secondary text-white">For Sale</span></div>
-                        <a href="property-single-v1.html"><img src="../../assets/assets/images/property_grid/property-grid-1.png" alt="Image Not Found!"></a>
-                        <span class="price-on text-white font-medium font-500">$1850/<small>mo</small></span>
-                        <ul class="position-absolute quick-meta">
-                            <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li>
-                            <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                            <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
-                        </ul>
+                    <div
+                        class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom m-2">
+                        <div class="cata position-absolute"><span class="sale bg-secondary text-white">For
+                                {{item?.property_type}}</span></div>
+                        <a routerLink="/property-detail/{{item?._id}}"><img
+                                src="{{baseUrl}}{{item?.property_image[0]?.path}}" alt="Image Not Found!"></a>
+                        <span class="price-on text-white font-medium font-500"
+                            style="margin-left: 10px !important;">₹{{item?.property_price}}/</span>
+
                     </div>
                     <div class="property_text p-3">
-                        <span class="d-inline-block text-primary">Apartment</span>
-                        <h5 class="mt-2"><a class="font-400 text-secondary" href="property-single-v1.html">Apolo Family House Residense</a></h5>
-                        <span class="my-3 d-block"><i class="fas fa-map-marker-alt text-primary"></i> 4213 Duff Avenue South Burlington, VT</span>
+                        <span class="d-inline-block text-primary">{{item?.property_category}}</span>
+                        <h5 class="mt-2"><a class="font-400 text-secondary"
+                                routerLink="/property-detail/{{item?._id}}">{{item?.property_name}}</a></h5>
+                        <span class="my-3 d-block"><i class="fas fa-map-marker-alt text-primary"></i>
+                            {{item?.property_address}}, {{item?.property_location}}</span>
                         <div class="quantity">
-                            <ul class="d-flex">
-                                <li><span>Rooms:</span> 7</li>
-                                <li><span>Beds:</span> 5</li>
-                                <li><span>Area:</span> 1200 Sqft<sup>2</sup></li>
+                            <ul class="d-flex quantity font-fifteen">
+                                <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>{{item?.no_of_bedrooms}}
+                                </li>
+                                <li title="Baths"><span><i
+                                            class="fa-solid fa-shower"></i></span>{{item?.no_of_bathrooms}}</li>
                             </ul>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center post-meta mt-2 p-3 border-top">
-                        <div class="agent">
-                            <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2" src="../../assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                        </div>
-                        <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <!-- Property Grid -->
-                <div class="property-grid-1 bg-white property-block border transation-this hover-shadow mb-30">
-                    <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom m-2">
-                        <div class="cata position-absolute">
-                            <span class="sale bg-secondary text-white">For Sale</span>
-                            <span class="featured bg-primary text-white">Featured</span>
-                        </div>
-                        <a href="property-single-v1.html"><img src="../../assets/assets/images/property_grid/property-grid-2.png" alt="Image Not Found!"></a>
-                        <span class="price-on text-white font-medium font-500">$120,5500</span>
-                        <ul class="position-absolute quick-meta">
-                            <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li>
-                            <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                            <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="property_text p-3">
-                        <span class="d-inline-block text-primary">Condos</span>
-                        <h5 class="mt-2"><a class="font-400 text-secondary" href="property-single-v1.html">Luxury Condos Infront of River</a></h5>
-                        <span class="my-3 d-block"><i class="fas fa-map-marker-alt text-primary"></i> 2305 Tree Frog Lane Overlandpk, MO </span>
-                        <div class="quantity">
-                            <ul class="d-flex">
-                                <li><span>Rooms:</span> 5</li>
-                                <li><span>Beds:</span> 3</li>
-                                <li><span>Area:</span> 1100 Sqft<sup>2</sup></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center post-meta mt-2 p-3 border-top">
-                        <div class="agent">
-                            <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2" src="../../assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                        </div>
-                        <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <!-- Property Grid -->
-                <div class="property-grid-1 bg-white property-block border transation-this hover-shadow mb-30">
-                    <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom m-2">
-                        <div class="cata position-absolute">
-                            <span class="sale bg-secondary text-white">For Rent</span>
-                        </div>
-                        <a href="property-single-v1.html"><img src="../../assets/assets/images/property_grid/property-grid-3.png" alt="Image Not Found!"></a>
-                        <span class="price-on text-white font-medium font-500">$3450/<small>mo</small></span>
-                        <ul class="position-absolute quick-meta">
-                            <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li>
-                            <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                            <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="property_text p-3">
-                        <span class="d-inline-block text-primary">Villa</span>
-                        <h5 class="mt-2"><a class="font-400 text-secondary" href="property-single-v1.html">Gorgeous Villa Bay View</a></h5>
-                        <span class="my-3 d-block"><i class="fas fa-map-marker-alt text-primary"></i> 2305 Tree Frog Lane Overlandpk, MO</span>
-                        <div class="quantity">
-                            <ul class="d-flex">
-                                <li><span>Rooms:</span> 5</li>
-                                <li><span>Beds:</span> 3</li>
-                                <li><span>Area:</span> 1100 Sqft<sup>2</sup></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center post-meta mt-2 p-3 border-top">
-                        <div class="agent">
-                            <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2" src="../../assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                        </div>
-                        <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <!-- Property Grid -->
-                <div class="property-grid-1 bg-white property-block border transation-this hover-shadow mb-30">
-                    <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom m-2">
-                        <div class="cata position-absolute">
-                            <span class="sale bg-secondary text-white">For Rent</span>
-                        </div>
-                        <a href="property-single-v1.html"><img src="../../assets/assets/images/property_grid/property-grid-4.png" alt="Image Not Found!"></a>
-                        <span class="price-on text-white font-medium font-500">$1,0450/<small>mo</small></span>
-                        <ul class="position-absolute quick-meta">
-                            <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li>
-                            <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                            <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="property_text p-3">
-                        <span class="d-inline-block text-primary">Condos</span>
-                        <h5 class="mt-2"><a class="font-400 text-secondary" href="property-single-v1.html">New Developed Condos</a></h5>
-                        <span class="my-3 d-block"><i class="fas fa-map-marker-alt text-primary"></i> 2305 Tree Frog Lane Overlandpk, MO </span>
-                        <div class="quantity">
-                            <ul class="d-flex">
-                                <li><span>Rooms:</span> 5</li>
-                                <li><span>Beds:</span> 3</li>
-                                <li><span>Area:</span> 1100 Sqft<sup>2</sup></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center post-meta mt-2 p-3 border-top">
-                        <div class="agent">
-                            <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2" src="../../assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                        </div>
-                        <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <!-- Property Grid -->
-                <div class="property-grid-1 bg-white property-block border transation-this hover-shadow mb-30">
-                    <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom m-2">
-                        <div class="cata position-absolute"><span class="sale bg-secondary text-white">For Sale</span></div>
-                        <a href="property-single-v1.html"><img src="../../assets/assets/images/property_grid/property-grid-1.png" alt="Image Not Found!"></a>
-                        <span class="price-on text-white font-medium font-500">$1850/<small>mo</small></span>
-                        <ul class="position-absolute quick-meta">
-                            <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li>
-                            <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                            <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="property_text p-3">
-                        <span class="d-inline-block text-primary">Apartment</span>
-                        <h5 class="mt-2"><a class="font-400 text-secondary" href="property-single-v1.html">Apolo Family House Residense</a></h5>
-                        <span class="my-3 d-block"><i class="fas fa-map-marker-alt text-primary"></i> 4213 Duff Avenue South Burlington, VT</span>
-                        <div class="quantity">
-                            <ul class="d-flex">
-                                <li><span>Rooms:</span> 7</li>
-                                <li><span>Beds:</span> 5</li>
-                                <li><span>Area:</span> 1200 Sqft<sup>2</sup></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center post-meta mt-2 p-3 border-top">
-                        <div class="agent">
-                            <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2" src="../../assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                        </div>
-                        <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <!-- Property Grid -->
-                <div class="property-grid-1 bg-white property-block border transation-this hover-shadow mb-30">
-                    <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom m-2">
-                        <div class="cata position-absolute">
-                            <span class="sale bg-secondary text-white">For Sale</span>
-                            <span class="featured bg-primary text-white">Featured</span>
-                        </div>
-                        <a href="property-single-v1.html"><img src="../../assets/assets/images/property_grid/property-grid-2.png" alt="Image Not Found!"></a>
-                        <span class="price-on text-white font-medium font-500">$120,5500</span>
-                        <ul class="position-absolute quick-meta">
-                            <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li>
-                            <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                            <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="property_text p-3">
-                        <span class="d-inline-block text-primary">Condos</span>
-                        <h5 class="mt-2"><a class="font-400 text-secondary" href="property-single-v1.html">Luxury Condos Infront of River</a></h5>
-                        <span class="my-3 d-block"><i class="fas fa-map-marker-alt text-primary"></i> 2305 Tree Frog Lane Overlandpk, MO </span>
-                        <div class="quantity">
-                            <ul class="d-flex">
-                                <li><span>Rooms:</span> 5</li>
-                                <li><span>Beds:</span> 3</li>
-                                <li><span>Area:</span> 1100 Sqft<sup>2</sup></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center post-meta mt-2 p-3 border-top">
-                        <div class="agent">
-                            <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2" src="../../assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                        </div>
-                        <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <!-- Property Grid -->
-                <div class="property-grid-1 bg-white property-block border transation-this hover-shadow mb-30">
-                    <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom m-2">
-                        <div class="cata position-absolute"><span class="sale bg-secondary text-white">For Sale</span></div>
-                        <a href="property-single-v1.html"><img src="../../assets/assets/images/property_grid/property-grid-1.png" alt="Image Not Found!"></a>
-                        <span class="price-on text-white font-medium font-500">$1850/<small>mo</small></span>
-                        <ul class="position-absolute quick-meta">
-                            <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li>
-                            <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                            <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="property_text p-3">
-                        <span class="d-inline-block text-primary">Apartment</span>
-                        <h5 class="mt-2"><a class="font-400 text-secondary" href="property-single-v1.html">Apolo Family House Residense</a></h5>
-                        <span class="my-3 d-block"><i class="fas fa-map-marker-alt text-primary"></i> 4213 Duff Avenue South Burlington, VT</span>
-                        <div class="quantity">
-                            <ul class="d-flex">
-                                <li><span>Rooms:</span> 7</li>
-                                <li><span>Beds:</span> 5</li>
-                                <li><span>Area:</span> 1200 Sqft<sup>2</sup></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center post-meta mt-2 p-3 border-top">
-                        <div class="agent">
-                            <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2" src="../../assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                        </div>
-                        <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <!-- Property Grid -->
-                <div class="property-grid-1 bg-white property-block border transation-this hover-shadow mb-30">
-                    <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom m-2">
-                        <div class="cata position-absolute">
-                            <span class="sale bg-secondary text-white">For Sale</span>
-                            <span class="featured bg-primary text-white">Featured</span>
-                        </div>
-                        <a href="property-single-v1.html"><img src="../../assets/assets/images/property_grid/property-grid-2.png" alt="Image Not Found!"></a>
-                        <span class="price-on text-white font-medium font-500">$120,5500</span>
-                        <ul class="position-absolute quick-meta">
-                            <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li>
-                            <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                            <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="property_text p-3">
-                        <span class="d-inline-block text-primary">Condos</span>
-                        <h5 class="mt-2"><a class="font-400 text-secondary" href="property-single-v1.html">Luxury Condos Infront of River</a></h5>
-                        <span class="my-3 d-block"><i class="fas fa-map-marker-alt text-primary"></i> 2305 Tree Frog Lane Overlandpk, MO </span>
-                        <div class="quantity">
-                            <ul class="d-flex">
-                                <li><span>Rooms:</span> 5</li>
-                                <li><span>Beds:</span> 3</li>
-                                <li><span>Area:</span> 1100 Sqft<sup>2</sup></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center post-meta mt-2 p-3 border-top">
-                        <div class="agent">
-                            <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2" src="../../assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                        </div>
-                        <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <!-- Property Grid -->
-                <div class="property-grid-1 bg-white property-block border transation-this hover-shadow mb-30">
-                    <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom m-2">
-                        <div class="cata position-absolute">
-                            <span class="sale bg-secondary text-white">For Rent</span>
-                        </div>
-                        <a href="property-single-v1.html"><img src="../../assets/assets/images/property_grid/property-grid-3.png" alt="Image Not Found!"></a>
-                        <span class="price-on text-white font-medium font-500">$3450/<small>mo</small></span>
-                        <ul class="position-absolute quick-meta">
-                            <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li>
-                            <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                            <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="property_text p-3">
-                        <span class="d-inline-block text-primary">Villa</span>
-                        <h5 class="mt-2"><a class="font-400 text-secondary" href="property-single-v1.html">Gorgeous Villa Bay View</a></h5>
-                        <span class="my-3 d-block"><i class="fas fa-map-marker-alt text-primary"></i> 2305 Tree Frog Lane Overlandpk, MO </span>
-                        <div class="quantity">
-                            <ul class="d-flex">
-                                <li><span>Rooms:</span> 5</li>
-                                <li><span>Beds:</span> 3</li>
-                                <li><span>Area:</span> 1100 Sqft<sup>2</sup></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center post-meta mt-2 p-3 border-top">
-                        <div class="agent">
-                            <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2" src="../../assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                        </div>
-                        <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <!-- Property Grid -->
-                <div class="property-grid-1 bg-white property-block border transation-this hover-shadow mb-30">
-                    <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom m-2">
-                        <div class="cata position-absolute">
-                            <span class="sale bg-secondary text-white">For Rent</span>
-                        </div>
-                        <a href="property-single-v1.html"><img src="../../assets/assets/images/property_grid/property-grid-4.png" alt="Image Not Found!"></a>
-                        <span class="price-on text-white font-medium font-500">$1,0450/<small>mo</small></span>
-                        <ul class="position-absolute quick-meta">
-                            <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li>
-                            <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                            <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="property_text p-3">
-                        <span class="d-inline-block text-primary">Condos</span>
-                        <h5 class="mt-2"><a class="font-400 text-secondary" href="property-single-v1.html">New Developed Condos</a></h5>
-                        <span class="my-3 d-block"><i class="fas fa-map-marker-alt text-primary"></i> 2305 Tree Frog Lane Overlandpk, MO </span>
-                        <div class="quantity">
-                            <ul class="d-flex">
-                                <li><span>Rooms:</span> 5</li>
-                                <li><span>Beds:</span> 3</li>
-                                <li><span>Area:</span> 1100 Sqft<sup>2</sup></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center post-meta mt-2 p-3 border-top">
-                        <div class="agent">
-                            <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2" src="../../assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                        </div>
-                        <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <!-- Property Grid -->
-                <div class="property-grid-1 bg-white property-block border transation-this hover-shadow mb-30">
-                    <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom m-2">
-                        <div class="cata position-absolute"><span class="sale bg-secondary text-white">For Sale</span></div>
-                        <a href="property-single-v1.html"><img src="../../assets/assets/images/property_grid/property-grid-1.png" alt="Image Not Found!"></a>
-                        <span class="price-on text-white font-medium font-500">$1850/<small>mo</small></span>
-                        <ul class="position-absolute quick-meta">
-                            <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li>
-                            <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                            <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="property_text p-3">
-                        <span class="d-inline-block text-primary">Apartment</span>
-                        <h5 class="mt-2"><a class="font-400 text-secondary" href="property-single-v1.html">Apolo Family House Residense</a></h5>
-                        <span class="my-3 d-block"><i class="fas fa-map-marker-alt text-primary"></i> 4213 Duff Avenue South Burlington, VT</span>
-                        <div class="quantity">
-                            <ul class="d-flex">
-                                <li><span>Rooms:</span> 7</li>
-                                <li><span>Beds:</span> 5</li>
-                                <li><span>Area:</span> 1200 Sqft<sup>2</sup></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center post-meta mt-2 p-3 border-top">
-                        <div class="agent">
-                            <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2" src="../../assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                        </div>
-                        <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <!-- Property Grid -->
-                <div class="property-grid-1 bg-white property-block border transation-this hover-shadow mb-30">
-                    <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom m-2">
-                        <div class="cata position-absolute">
-                            <span class="sale bg-secondary text-white">For Sale</span>
-                            <span class="featured bg-primary text-white">Featured</span>
-                        </div>
-                        <a href="property-single-v1.html"><img src="../../assets/assets/images/property_grid/property-grid-2.png" alt="Image Not Found!"></a>
-                        <span class="price-on text-white font-medium font-500">$120,5500</span>
-                        <ul class="position-absolute quick-meta">
-                            <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li>
-                            <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
-                            <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="property_text p-3">
-                        <span class="d-inline-block text-primary">Condos</span>
-                        <h5 class="mt-2"><a class="font-400 text-secondary" href="property-single-v1.html">Luxury Condos Infront of River</a></h5>
-                        <span class="my-3 d-block"><i class="fas fa-map-marker-alt text-primary"></i> 2305 Tree Frog Lane Overlandpk, MO </span>
-                        <div class="quantity">
-                            <ul class="d-flex">
-                                <li><span>Rooms:</span> 5</li>
-                                <li><span>Beds:</span> 3</li>
-                                <li><span>Area:</span> 1100 Sqft<sup>2</sup></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center post-meta mt-2 p-3 border-top">
-                        <div class="agent">
-                            <a href="#" class="d-flex text-general align-items-center"><img class="rounded-circle me-2" src="../../assets/assets/images/team/1.jpg" alt="avata"><span>Ali Tufan</span></a>
-                        </div>
-                        <div class="post-date ms-auto"><span>2 Month Ago</span></div>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -541,15 +174,7 @@
             <div class="col mt-5">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination pagination-dotted-active justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link">Previous Page</a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next Page</a>
-                        </li>
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
                     </ul>
                 </nav>
             </div>

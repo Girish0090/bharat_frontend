@@ -1,0 +1,15 @@
+.scroll-top-vertical {
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    background-color: #aa8453 !important;
+    color: #ffffff !important;
+    padding: 10px !important;
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease !important;
+}
+
+.scroll-top-vertical:hover {
+    background-color: #aa8453 !important;
+}

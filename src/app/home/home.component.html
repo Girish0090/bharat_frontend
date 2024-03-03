@@ -1,33 +1,148 @@
-<!--============== Search Banner Start ==============-->
-<div class="full-row p-0"
-  style="background-image: url('assets/assets/images/slider/3.png'); background-position: center center;">
+<!--============== Slider Area Start ==============-->
+<div class="full-row p-0 overflow-hidden">
+
+  <div id="slider" class="overflow-hidden" style="width:1200px; height:780px; margin:0 auto;margin-bottom: 0px;">
+
+    <!-- Slide 1-->
+    <div *ngFor="let item of sliderData" class="ls-slide"
+      data-ls="bgsize:cover; bgposition:50% 50%; duration:5000; transition2d:104; kenburnsscale:1.00;">
+      <img width="1920" height="960" src="{{baseUrl}}{{item?.slider_image?.path}}" class="ls-bg" alt="" />
+      
+      <p style="font-size:48px; font-weight:700; top:370px; left:50%; font-family: 'Sen', sans-serif;"
+        class="ls-l ls-hide-phone text-white"
+        data-ls="offsetyin:100%; durationin:1500; delayin:1000; clipin:0 0 100% 0; durationout:400; parallaxlevel:0;">
+        {{item?.text_one}}</p>
+      <p style="top:450px; left:50%; text-align:center; font-weight:400; font-style:normal; text-decoration:none; width:650px; font-size:18px; color:#ffffff; line-height:30px; white-space:normal;"
+        class="ls-l ls-hide-phone"
+        data-ls="offsetyin:100%; durationin:1500; delayin:1500; clipin:0 0 100% 0; durationout:400; parallaxlevel:0;">
+       {{item?.text_two}}
+      </p>
+      
+    </div>
+
+
+
+  </div>
+</div>
+<!--============== Slider Area End ==============-->
+
+<!--============== Property Search Form Start ==============-->
+<div class="full-row p-0 property-search-form on-slider">
   <div class="container">
-    <div class="row justify-content-md-center">
-      <div class="col-10">
-        <div class="banner-search" style="padding-top: 300px; padding-bottom: 320px;">
-          <h2 class="text-center mx-auto text-white">Search what you are looking for...</h2>
-          <span class="d-table mx-auto text-white font-medium mb-4">We have listed over 100000+ property in our
-            database</span>
-          <form action="#" class="banner-search-form bg-white p-4" method="POST">
-            <div class="row">
-              <div class="col-lg-10 col-md-8">
-                <input type="text" class="form-control" placeholder="Enter Keyword...">
-              </div>
-              <div class="col-lg-2 col-md-4">
-                <button class="btn btn-primary w-100">Search</button>
+    <div class="row">
+      <div class="col">
+        <form class="bg-white shadow-sm quick-search form-icon-right position-relative" action="#" method="post">
+          <div class="row row-cols-lg-6 row-cols-md-3 row-cols-1 g-3">
+            <div class="col">
+              <input type="text" class="form-control" name="keyword" placeholder="Enter Keyword...">
+            </div>
+            <div class="col">
+              <select class="form-control">
+                <option>Property Types</option>
+                <option>House</option>
+                <option>Office</option>
+                <option>Appartment</option>
+                <option>Condos</option>
+                <option>Villa</option>
+                <option>Small Family</option>
+                <option>Single Room</option>
+              </select>
+            </div>
+            <div class="col">
+              <div class="position-relative">
+                <input type="text" class="form-control" name="location" placeholder="Location">
+                <i class="flaticon-placeholder flat-mini icon-font y-center text-dark"></i>
               </div>
             </div>
-          </form>
-        </div>
+            <div class="col">
+              <div class="position-relative">
+                <button class="form-control price-toggle toggle-btn" data-target="#data-range-price">Price <i
+                    class="fas fa-angle-down font-mini icon-font y-center text-dark"></i></button>
+                <div id="data-range-price" class="price_range price-range-toggle">
+                  <div class="area-filter price-filter">
+                    <span class="price-slider">
+                      <input class="filter_price" type="text" name="price" value="0;10000000" />
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="position-relative">
+                <button class="form-control text-start toggle-btn" data-target="#aditional-check">Advanced <i
+                    class="fas fa-ellipsis-v font-mini icon-font y-center text-dark"></i></button>
+              </div>
+            </div>
+            <div class="col">
+              <button class="btn btn-primary w-100">Search</button>
+            </div>
+            <!-- Advance Features -->
+            <div id="aditional-check" class="aditional-features p-5">
+              <h5 class="mb-3">Aditional Options</h5>
+              <ul class="row row-cols-lg-4 row-cols-md-2 row-cols-1 custom-check-box mb-4">
+                <li class="col">
+                  <input type="checkbox" class="custom-control-input hide" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Air Conditioning</label>
+                </li>
+                <li class="col">
+                  <input type="checkbox" class="custom-control-input hide" id="customCheck2">
+                  <label class="custom-control-label" for="customCheck2">Garage Facility</label>
+                </li>
+                <li class="col">
+                  <input type="checkbox" class="custom-control-input hide" id="customCheck3">
+                  <label class="custom-control-label" for="customCheck3">Swiming Pool</label>
+                </li>
+                <li class="col">
+                  <input type="checkbox" class="custom-control-input hide" id="customCheck4">
+                  <label class="custom-control-label" for="customCheck4">Fire Security</label>
+                </li>
+
+                <li class="col">
+                  <input type="checkbox" class="custom-control-input hide" id="customCheck5">
+                  <label class="custom-control-label" for="customCheck5">Fire Place Facility</label>
+                </li>
+                <li class="col">
+                  <input type="checkbox" class="custom-control-input hide" id="customCheck6">
+                  <label class="custom-control-label" for="customCheck6">Play Ground</label>
+                </li>
+                <li class="col">
+                  <input type="checkbox" class="custom-control-input hide" id="customCheck7">
+                  <label class="custom-control-label" for="customCheck7">Ferniture Include</label>
+                </li>
+                <li class="col">
+                  <input type="checkbox" class="custom-control-input hide" id="customCheck8">
+                  <label class="custom-control-label" for="customCheck8">Marbel Floor</label>
+                </li>
+
+                <li class="col">
+                  <input type="checkbox" class="custom-control-input hide" id="customCheck9">
+                  <label class="custom-control-label" for="customCheck9">Store Room</label>
+                </li>
+                <li class="col">
+                  <input type="checkbox" class="custom-control-input hide" id="customCheck10">
+                  <label class="custom-control-label" for="customCheck10">Hight Class Door</label>
+                </li>
+                <li class="col">
+                  <input type="checkbox" class="custom-control-input hide" id="customCheck11">
+                  <label class="custom-control-label" for="customCheck11">Floor Heating System</label>
+                </li>
+                <li class="col">
+                  <input type="checkbox" class="custom-control-input hide" id="customCheck12">
+                  <label class="custom-control-label" for="customCheck12">Garden Include</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </div>
-<!--============== Search Banner End ==============-->
+<!--============== Property Search Form End ==============-->
 
 <!--============== Recent Property Start ==============-->
 <div class="full-row bg-light">
-  <div class="container">
+  <div class="container mt-5">
     <div class="row">
       <div class="col">
         <div class="text-secondary text-center mb-5">
@@ -55,7 +170,8 @@
               </div>
               <div class="property_text p-4">
                 <span class="listing-price">₹{{item?.property_price}}</span>
-                <h5 class="listing-title"><a routerLink="/property-detail/{{item?._id}}">{{item?.property_name}}</a></h5>
+                <h5 class="listing-title"><a routerLink="/property-detail/{{item?._id}}">{{item?.property_name}}</a>
+                </h5>
                 <span class="listing-location"><i class="fas fa-map-marker-alt"></i> {{item?.property_location}} </span>
                 <ul class="d-flex quantity font-fifteen">
                   <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>{{item?.no_of_bedrooms}}</li>
@@ -91,7 +207,7 @@
             <img src="assets/assets/images/location/3.png" alt="image not found">
           </div>
           <div class="mt-3">
-            <h5 class="transation font-400"><a href="#">AJMER</a></h5>
+            <h5 class="transation font-400"><a routerLink="/listing/ajmer">AJMER</a></h5>
             <p>82 Properties</p>
           </div>
         </div>
@@ -102,7 +218,7 @@
             <img src="assets/assets/images/location/1.png" alt="image not found">
           </div>
           <div class="mt-3">
-            <h5 class="transation font-400"><a href="#">JAIPUR</a></h5>
+            <h5 class="transation font-400"><a routerLink="/listing/jaipur">JAIPUR</a></h5>
             <p>57 Properties</p>
           </div>
         </div>
@@ -113,7 +229,7 @@
             <img src="assets/assets/images/location/2.png" alt="image not found">
           </div>
           <div class="mt-3">
-            <h5 class="transation font-400"><a href="#">KOTA</a></h5>
+            <h5 class="transation font-400"><a routerLink="/listing/kota">KOTA</a></h5>
             <p>170 Properties</p>
           </div>
         </div>
@@ -124,7 +240,7 @@
             <img src="assets/assets/images/location/4.png" alt="image not found">
           </div>
           <div class="mt-3">
-            <h5 class="transation font-400"><a href="#">PANVEL,(MUMBAI)</a></h5>
+            <h5 class="transation font-400"><a routerLink="/listing/panvel">PANVEL,(MUMBAI)</a></h5>
             <p>17 Properties</p>
           </div>
         </div>
@@ -135,7 +251,7 @@
             <img src="assets/assets/images/location/5.png" alt="image not found">
           </div>
           <div class="mt-3">
-            <h5 class="transation font-400"><a href="#">INDORE</a></h5>
+            <h5 class="transation font-400"><a routerLink="/listing/indore">INDORE</a></h5>
             <p>27 Properties</p>
           </div>
         </div>
@@ -182,7 +298,8 @@
               </div>
               <div class="property_text p-4">
                 <span class="listing-price">₹{{item?.property_price}}</span>
-                <h5 class="listing-title"><a routerLink="/property-detail/{{item?._id}}">{{item?.property_name}}</a></h5>
+                <h5 class="listing-title"><a routerLink="/property-detail/{{item?._id}}">{{item?.property_name}}</a>
+                </h5>
                 <span class="listing-location"><i class="fas fa-map-marker-alt"></i> {{item?.property_location}} </span>
                 <ul class="d-flex quantity font-fifteen">
                   <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>{{item?.no_of_bedrooms}}</li>
@@ -241,6 +358,82 @@
   </div>
 </div>
 <!--============== Reg Banner End ==============-->
+
+ <!--============== Property Agent Start ==============-->
+ <div class="full-row bg-light">
+  <div class="container">
+      <div class="row">
+          <div class="col">
+              <div class="align-items-center d-flex">
+                  <div class="me-auto">
+                      <h2 class="d-table">Our Listed Property Agents</h2>
+                  </div>
+                  <a href="#" class="ms-auto btn-link">View All Agents</a>
+              </div>
+          </div>
+      </div>
+      <div class="row row-cols-xl-4 row-cols-md-2 row-cols-1 mt-5">
+          <div class="col">
+              <div class="thumb-team-simple">
+                  <img class="rounded-lg" src="../../assets/assets/images/team/1.jpg" alt="">
+                  <div class="user-info d-flex py-4">
+                      <div class="me-auto">
+                          <h5 class="text-dark mb-2 font-400"><a href="#">Luann McLawhorn</a></h5>
+                          <span class="text-secondary font-fifteen">At 1st April, 2012</span>
+                      </div>
+                      <div class="member-score font-small bg-primary d-table text-white ms-auto">
+                          <span>Score: 4.50</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col">
+              <div class="thumb-team-simple">
+                  <img class="rounded-lg" src="../../assets/assets/images/team/2.jpg" alt="">
+                  <div class="user-info d-flex py-4">
+                      <div class="me-auto">
+                          <h5 class="text-dark mb-2 font-400"><a href="#">Ronald Johnson</a></h5>
+                          <span class="text-secondary font-fifteen">At 1st April, 2012</span>
+                      </div>
+                      <div class="member-score font-small bg-primary d-table text-white ms-auto">
+                          <span>Score: 5.00</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col">
+              <div class="thumb-team-simple">
+                  <img class="rounded-lg" src="../../assets/assets/images/team/3.jpg" alt="">
+                  <div class="user-info d-flex py-4">
+                      <div class="me-auto">
+                          <h5 class="text-dark mb-2 font-400"><a href="#">John M. Riddle</a></h5>
+                          <span class="text-secondary font-fifteen">At 1st April, 2012</span>
+                      </div>
+                      <div class="member-score font-small bg-primary d-table text-white ms-auto">
+                          <span>Score: 5.00</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col">
+              <div class="thumb-team-simple">
+                  <img class="rounded-lg" src="../../assets/assets/images/team/4.jpg" alt="">
+                  <div class="user-info d-flex py-4">
+                      <div class="me-auto">
+                          <h5 class="text-dark mb-2 font-400"><a href="#">John M. Riddle</a></h5>
+                          <span class="text-secondary font-fifteen">At 1st April, 2012</span>
+                      </div>
+                      <div class="member-score font-small bg-primary d-table text-white ms-auto">
+                          <span>Score: 4.00</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!--============== Property Agent End ==============-->
+
 
 <!--============== Testimonial Section Start ==============-->
 <div class="full-row">

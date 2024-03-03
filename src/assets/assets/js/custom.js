@@ -69,7 +69,7 @@ function customJS() {
             step: 1000,
             smooth: true,
             round: 0,
-            dimension: "$",
+            dimension: "₹",
             skin: "plastic"
         });
     }

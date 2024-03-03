@@ -27,8 +27,8 @@
                         <div class="col">
                             <label for="pType">Property Category</label>
                             <select id="pType" class="form-control" name="selectedCategory"
-                                [(ngModel)]="selectedCategory" (change)="selectedType=''">
-                                <option disabled selected value="">Choose Property Category</option>
+                                [(ngModel)]="selectedCategory" (change)="selectedType='';selectedBedrooms='';selectedBathrooms='' ">
+                                <option disabled selected value="">Choose Category</option>
                                 <option value="residential">Residential</option>
                                 <option value="commercial">Commercial</option>
                                 <option value="industrial">Industrial</option>
@@ -38,29 +38,29 @@
                         <div class="col">
                             <label for="pStatus">Property Type</label>
                             <select id="pStatus" class="form-control" name="selectedType" [(ngModel)]="selectedType"
-                                (change)="selectedCategory=''">
-                                <option disabled selected value="">Choose Property Type</option>
+                                (change)="selectedCategory='';selectedBedrooms='';selectedBathrooms=''">
+                                <option disabled selected value="">Choose Type</option>
                                 <option value="rent">For Rent</option>
                                 <option value="sale">For Sale</option>
                             </select>
                         </div>
                         <div class="col">
+                            <label for="location">Location</label>
                             <div class="position-relative">
-                                <label for="location">Location</label>
-                                <input type="text" class="form-control" name="location" placeholder="Location">
+                                <input type="text" class="form-control" name="location" [(ngModel)]="selectedLocation" placeholder="Location" (input)="selectedCategory='';selectedBedrooms='';selectedBathrooms=''; selectedType='';">
                                 <i class="flaticon-placeholder flat-mini icon-font y-center text-dark"></i>
                             </div>
                         </div>
                         <div class="col">
+                            <label for="data-range-price">Price Range</label>
                             <div class="position-relative">
-                                <label for="data-range-price">Price Range</label>
                                 <button class="form-control price-toggle toggle-btn"
                                     data-target="#data-range-price">Price <i
                                         class="fas fa-angle-down font-mini icon-font y-center text-dark"></i></button>
                                 <div id="data-range-price" class="price_range price-range-toggle">
                                     <div class="area-filter price-filter">
                                         <span class="price-slider">
-                                            <input class="filter_price" type="text" name="price" value="0;10000000" />
+                                            <input class="filter_price" type="text" name="price" value="0;10000000"  />
                                         </span>
                                     </div>
                                 </div>
@@ -68,32 +68,28 @@
                         </div>
                         <div class="col">
                             <label for="bedrooms">Bedrooms</label>
-                            <select class="form-control">
-                                <option>Bedrooms</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
+                            <select class="form-control" name="bedrooms" [(ngModel)]="selectedBedrooms" (change)="selectedType=''; selectedCategory=''; selectedBathrooms=''">
+                                <option disabled selected  value="">Choose Bedrooms</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
                             </select>
+                            
                         </div>
                         <div class="col">
                             <label for="bathrooms">Bathrooms</label>
-                            <select class="form-control">
-                                <option>Bathrooms</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
+                            <select class="form-control" name="bathrooms" [(ngModel)]="selectedBathrooms" (change)="selectedType=''; selectedCategory=''; selectedBedrooms=''">
+                                <option disabled selected value="">Choose Bathrooms</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
                             </select>
                         </div>
+                        
                     </div>
                     <div class="row mt-2">
                         <div class="col text-center mt-2">
@@ -114,7 +110,7 @@
             <div class="col">
                 <div class="woo-filter-bar p-3 d-flex flex-wrap justify-content-between">
                     <div class="d-flex flex-wrap">
-                        <div class="woocommerce-ordering">
+                        <div class="woocommerce-ordering" *ngIf="propertyData?.length > 0">
                             <select name="orderby1" (change)="getSorting($event)">
                                 <option disabled selected>Sort By :-</option>
                                 <option value="relevance">Relevance</option>
@@ -126,7 +122,7 @@
                     <div class="d-flex">
                         <!-- <h5>Showing 1-{{projectList?.length}} of {{projectList?.length}} results</h5> -->
 
-                        <span class="woocommerce-ordering-pages me-4 font-fifteen">Showing {{propertyData.length}} result</span>
+                        <span class="woocommerce-ordering-pages me-4 font-fifteen">Showing {{propertyData?.length}} result</span>
                         <form class="view-category" method="get">
                             <button title="List" class="list-view" value="list" name="display" type="submit"><i
                                     class="flaticon-grid-1 flat-mini"></i></button>
@@ -168,6 +164,11 @@
                     </div>
 
                 </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="propertyData?.length == 0">
+            <div class="col">
+                <h3 class="text-center">No Property Found</h3>
             </div>
         </div>
         <div class="row">

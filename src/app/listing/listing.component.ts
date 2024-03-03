@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AppserviceService } from '../appservice.service';
 import { finalize } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ActivatedRoute } from '@angular/router';
 
 declare var customJS: any;
+declare var $: any;
 
 @Component({
   selector: 'app-listing',
@@ -19,12 +21,29 @@ export class ListingComponent implements OnInit {
 
   selectedCategory: any = '';
   selectedType: any = '';
+  selectedBedrooms: any = '';
+  selectedBathrooms: any = '';
+  selectedLocation: any = '';
 
-  constructor(private service: AppserviceService) { }
+  constructor(private service: AppserviceService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     customJS();
-    this.getAllProperty();
+
+    const cityParam = this.route.snapshot.paramMap.get('city');
+    if (cityParam) {
+      // If the city parameter exists, call getPropertyByCity
+      this.getPropertyByCity(cityParam);
+    } else {
+      // Otherwise, call getAllProperty
+      this.getAllProperty();
+    }
+
+    // $('.toggle-btn').on('click', function (e:any) {
+    //   e.preventDefault();
+    //   alert('Button clicked!');
+    // });
+
   }
 
   // get all property
@@ -43,12 +62,31 @@ export class ListingComponent implements OnInit {
   getSearchedProperty() {
     console.log('Selected Category:', this.selectedCategory);
     console.log('Selected Type:', this.selectedType);
+    console.log('Selected Bedrooms:', this.selectedBedrooms);
+    console.log('Selected Bathrooms:', this.selectedBathrooms);
 
     if (this.selectedCategory) {
       this.getPropertyByCategory(this.selectedCategory);
     } else if (this.selectedType) {
       this.getPropertyByType(this.selectedType);
+    } else if (this.selectedBedrooms) {
+      this.getPropertyByBedrooms(this.selectedBedrooms);
+    } else if (this.selectedBathrooms) {
+      this.getPropertyByBathrooms(this.selectedBathrooms);
+    } else if (this.selectedLocation) {
+      this.getPropertyByCity(this.selectedLocation);
+    } else {
+      // Get the values from the slider
+      const sliderValues = $(".filter_price").val().split(';');
+
+      const minValue = sliderValues[0];
+      const maxValue = sliderValues[1];
+      
+      $('.toggle-btn').trigger('click');
+      this.filterPropertyByPrice({ min: minValue, max: maxValue });
     }
+
+
   }
 
 
@@ -78,10 +116,58 @@ export class ListingComponent implements OnInit {
 
   }
 
+  // Get Property By BedRoom
+  getPropertyByBedrooms(event: any) {
+    this.service.get(`getPropertyByRooms?bedrooms=${event}`).pipe(finalize(() => this.loader = false)).subscribe((res: any) => {
+      if (res?.success) {
+        this.propertyData = res?.data;
+        console.log(this.propertyData);
+      }
+    }, error => {
+      this.service.openSnackBar(error.message, 'Failed');
+    })
+  }
+
+  // Get Property By BathRoom
+  getPropertyByBathrooms(event: any) {
+    this.service.get(`getPropertyByRooms?bathrooms=${event}`).pipe(finalize(() => this.loader = false)).subscribe((res: any) => {
+      if (res?.success) {
+        this.propertyData = res?.data;
+        console.log(this.propertyData);
+      }
+    }, error => {
+      this.service.openSnackBar(error.message, 'Failed');
+    })
+  }
+
+  // filter property by Price
+  filterPropertyByPrice(event: any) {
+    this.service.get(`filterPropertyByPrice?minPrice=${event.min}&maxPrice=${event.max}`).pipe(finalize(() => this.loader = false)).subscribe((res: any) => {
+      if (res?.success) {
+        this.propertyData = res?.data;
+        console.log(this.propertyData);
+      }
+    }, error => {
+      this.service.openSnackBar(error.message, 'Failed');
+    })
+  }
+
 
   // Get Property By Sorting
   getSorting(event: any) {
     this.service.get("getSortProperty?sortBy=" + event.target.value).pipe(finalize(() => this.loader = false)).subscribe((res: any) => {
+      if (res?.success) {
+        this.propertyData = res?.data;
+        console.log(this.propertyData);
+      }
+    }, error => {
+      this.service.openSnackBar(error.message, 'Failed');
+    })
+  }
+
+  // Get Property By City
+  getPropertyByCity(city: any) {
+    this.service.get("getPropertyByCity/" + city).pipe(finalize(() => this.loader = false)).subscribe((res: any) => {
       if (res?.success) {
         this.propertyData = res?.data;
         console.log(this.propertyData);

@@ -1,0 +1,106 @@
+<!--============== Page title Start ==============-->
+<div class="full-row mt-5 py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col inner-page-banner">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0 bg-transparent p-0">
+                        <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                        <li class="breadcrumb-item"><a routerLink="/agent-list">Agents</a></li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page">{{agentData?.userName}}</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!--============== Page title End ==============-->
+
+<!--============== Agent Details Start ==============-->
+<div class="full-row pt-0 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 agent-style-1 list-view agent-details">
+                <div class="entry-wrapper bg-white transation-this hover-shadow mb-4">
+                    <div class="entry-thumbnail-wrapper transation bg-secondary hover-img-zoom">
+                        <div class="agent-level">
+                            <span title="Agenet level">{{agentData?.category}}</span>
+                        </div>
+                        <img src="{{baseUrl}}{{agentData?.image?.path}}" alt="Agent Photo"
+                            style="height: 300px; width: 100%;">
+                    </div>
+                    <div class="entry-content-wrapper">
+                        <div class="entry-header d-flex pb-2">
+                            <div class="me-auto">
+                                <h6 class="agent-name text-dark mb-0"><a>{{agentData?.userName}}</a></h6>
+                                <span class="text-primary font-fifteen">Age:- {{agentData?.age}}</span>
+                            </div>
+                        </div>
+                        <div class="enrey-content">
+                            <p>Lorem ipsum dolor sit amet, consec tetur cing elit. Suspe ndisse suscorem ipsum dolor sit
+                                ametcipsum dolor sit t, consec tetur atetur cing elit. Suspe ndisse susco rem ipsum
+                                dolor sit ametcipsum doloamet.</p>
+                            <ul class="agent-contact py-1">
+                                <li><span>Mobile:</span>{{agentData?.mobile}}</li>
+                                <li><span>Email:</span>{{agentData?.email}}</li>
+                            </ul>
+
+                        </div>
+                        <div class="entry-footer d-flex align-items-center post-meta py-2 border-top">
+                            <div class="agent">
+                                <a href="#" class="d-flex text-general align-items-center">
+                                    <i class="fas fa-map-marker-alt text-primary"></i> &nbsp;
+                                    {{agentData?.address}}, {{agentData?.city}}, {{agentData?.state}}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-4 order-2">
+                <!-- Message Form -->
+                <div class="widget widget_send_message mb-30">
+                    <h5 class="mb-4">Luann McLawhorn</h5>
+                    <form class="quick-search form-icon-right" action="#" method="post">
+                        <div class="form-row">
+                            <div class="col-12 mb-10">
+                                <input type="text" class="form-control" name="name" placeholder="Your Name">
+                            </div>
+                            <div class="col-12 mb-10">
+                                <input type="text" class="form-control" name="phone" placeholder="Phone Number">
+                            </div>
+                            <div class="col-12 mb-10">
+                                <input type="email" class="form-control" name="email" placeholder="Your Email">
+                            </div>
+                            <div class="col-12 mb-10">
+                                <textarea class="form-control" name="message" placeholder="Message"
+                                    rows="3"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-xl-8 order-1">
+                <div class="entry-wrapper">
+                    <!-- Agent Overview -->
+                    <div class="agent-overview p-30 bg-white mb-50">
+                        <h4 class="mb-4">Agent Overview</h4>
+                        <p><b>Description:-</b> {{agentData?.description}}</p>
+                        <p><b>Category:-</b> {{agentData?.category}}</p>
+                        <p><b>Completed Projects:-</b> {{agentData?.completedProject}}</p>
+                        <p><b>Running Projects:-</b> {{agentData?.runningProject}}</p>
+                        <p><b>Specialist:-</b> {{agentData?.specialist}}</p>
+                        <p><b>Experience:-</b> {{agentData?.experience}}+ Years</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--============== Agent Details End ==============-->

@@ -1,0 +1,100 @@
+<!--============== Page title Start ==============-->
+<div class="full-row mt-5 py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <nav aria-label="breadcrumb" class="mb-2">
+                    <ol class="breadcrumb mb-0 bg-transparent p-0">
+                        <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page">Agent List</li>
+                    </ol>
+                </nav>
+                <h3 class="text-secondary">Agent List View</h3>
+            </div>
+        </div>
+    </div>
+</div>
+<!--============== Page title End ==============-->
+
+  <!--============== Agent Grid Section Start ==============-->
+  <div class="full-row pt-0 bg-light">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-xl-12">
+                <div class="row">
+                    <div class="col">
+                        <div class="woo-filter-bar p-3 d-flex flex-wrap justify-content-between">
+                            <div class="d-flex flex-wrap">
+                                <form class="woocommerce-ordering" method="get">
+                                    <select name="orderby1" (change)="getSorting($event)">
+                                        <option disabled selected>Sort By :-</option>
+                                        <option value="relevance">Relevance</option>
+                                        <option value="asc">Name A-Z</option>
+                                        <option value="desc">Name Z-A</option>
+                                    </select>
+                                </form>
+                            </div>
+                            <div class="d-flex">
+                                <span class="woocommerce-ordering-pages me-4 font-fifteen">Showing {{agentData?.length}} result</span>
+                                <form class="view-category" method="get">
+                                    <button title="List" class="list-view" value="list" name="display" type="submit"><i class="flaticon-grid-1 flat-mini"></i></button>
+                                   
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-cols-lg-3 row-cols-1 g-4 agent-style-1">
+                    <!-- Agent thumb -->
+                    <div class="col" *ngFor="let item of agentData | paginate: { itemsPerPage: 10 , currentPage: p }">
+                        <div class="entry-wrapper bg-white transation-this hover-shadow">
+                            <div class="entry-thumbnail-wrapper transation bg-secondary hover-img-zoom">
+                                <div class="agent-level">
+                                    <span title="Agenet level">{{item?.category}}</span>
+                                </div>
+                                <img src="{{baseUrl}}{{item?.image?.path}}" alt="Agent Photo" style="height: 300px; width: 100%;">
+                            </div>
+                            <div class="entry-content-wrapper">
+                                <div class="entry-header d-flex pb-2">
+                                    <div class="me-auto">
+                                        <h6 class="text-dark mb-0"><a routerLink="/agent-detail/{{item?._id}}">{{item?.userName}}</a></h6>
+                                    </div>
+                                    <div class="customer-review ms-auto">
+                                        <span class="text-primary font-fifteen">Age:- {{item?.age}}</span>
+                                    </div>
+                                </div>
+                                <div class="enrey-content">
+                                    <ul class="agent-contact py-1">
+                                        <li><span>Mobile:</span>{{item?.mobile}}</li>
+                                        <li><span>Email:</span>{{item?.email}}</li>
+                                    </ul>
+                                </div>
+                                <div class="entry-footer d-flex align-items-center post-meta py-2 border-top">
+                                    <div class="agent">
+                                        <a class="d-flex text-general align-items-center">
+                                            <i class="fas fa-map-marker-alt text-primary"></i> &nbsp;
+                                           {{item?.address}}, {{item?.city}}, {{item?.state}}
+                                        </a>
+                                    </div>
+                                    <div class="post-date ms-auto"><span><b>Completed Projects:-</b> {{item?.completedProject}}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Pagination -->
+                    <div class="col mt-5">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination pagination-dotted-active justify-content-center">
+                                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--============== Agent Grid Section End ==============-->

@@ -798,7 +798,7 @@ function reviewCarousel() {
                     items: 1
                 },
                 1200: {
-                    items: 1
+                    items: 2
                 }
             }
         });

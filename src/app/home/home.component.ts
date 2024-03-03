@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   propertyData: any;
   propertyCategoryByCat: any;
   categoryValues: any;
+  agentData:any;
 
   constructor(private service: AppserviceService) { }
 
@@ -31,6 +32,7 @@ export class HomeComponent implements OnInit {
     this.getAllSlider();
     this.getClientReview();
     this.getAllProperty();
+    this.getAllAgents();
   }
 
   //get all slider
@@ -110,6 +112,18 @@ export class HomeComponent implements OnInit {
         this.propertyCategoryByCat = res?.data;
         // this.propertyData = this.propertyCategoryByCat;
         console.log("gvh", this.propertyCategoryByCat);
+      }
+    }, error => {
+      this.service.openSnackBar(error.message, 'Failed');
+    })
+  }
+
+   // get all property
+   getAllAgents() {
+    this.service.get("getAllAgents").pipe(finalize(() => this.loader = false)).subscribe((res: any) => {
+      if (res?.success) {
+        this.agentData = res?.data;
+        console.log(this.agentData);
       }
     }, error => {
       this.service.openSnackBar(error.message, 'Failed');

@@ -7,7 +7,7 @@
     <div *ngFor="let item of sliderData" class="ls-slide"
       data-ls="bgsize:cover; bgposition:50% 50%; duration:5000; transition2d:104; kenburnsscale:1.00;">
       <img width="1920" height="960" src="{{baseUrl}}{{item?.slider_image?.path}}" class="ls-bg" alt="" />
-      
+
       <p style="font-size:48px; font-weight:700; top:370px; left:50%; font-family: 'Sen', sans-serif;"
         class="ls-l ls-hide-phone text-white"
         data-ls="offsetyin:100%; durationin:1500; delayin:1000; clipin:0 0 100% 0; durationout:400; parallaxlevel:0;">
@@ -15,9 +15,9 @@
       <p style="top:450px; left:50%; text-align:center; font-weight:400; font-style:normal; text-decoration:none; width:650px; font-size:18px; color:#ffffff; line-height:30px; white-space:normal;"
         class="ls-l ls-hide-phone"
         data-ls="offsetyin:100%; durationin:1500; delayin:1500; clipin:0 0 100% 0; durationout:400; parallaxlevel:0;">
-       {{item?.text_two}}
+        {{item?.text_two}}
       </p>
-      
+
     </div>
 
 
@@ -359,77 +359,44 @@
 </div>
 <!--============== Reg Banner End ==============-->
 
- <!--============== Property Agent Start ==============-->
- <div class="full-row bg-light">
+<!--============== Property Agent Start ==============-->
+<div class="full-row bg-light">
   <div class="container">
-      <div class="row">
-          <div class="col">
-              <div class="align-items-center d-flex">
-                  <div class="me-auto">
-                      <h2 class="d-table">Our Listed Property Agents</h2>
-                  </div>
-                  <a href="#" class="ms-auto btn-link">View All Agents</a>
-              </div>
+    <div class="row">
+      <div class="col">
+        <div class="align-items-center d-flex">
+          <div class="me-auto">
+            <h2 class="d-table">Our Listed Property Agents</h2>
           </div>
+          <a href="/agent-list" class="ms-auto btn-link">View All Agents</a>
+        </div>
       </div>
-      <div class="row row-cols-xl-4 row-cols-md-2 row-cols-1 mt-5">
-          <div class="col">
-              <div class="thumb-team-simple">
-                  <img class="rounded-lg" src="../../assets/assets/images/team/1.jpg" alt="">
-                  <div class="user-info d-flex py-4">
-                      <div class="me-auto">
-                          <h5 class="text-dark mb-2 font-400"><a href="#">Luann McLawhorn</a></h5>
-                          <span class="text-secondary font-fifteen">At 1st April, 2012</span>
-                      </div>
-                      <div class="member-score font-small bg-primary d-table text-white ms-auto">
-                          <span>Score: 4.50</span>
-                      </div>
-                  </div>
-              </div>
+    </div>
+    <div class="row row-cols-xl-4 row-cols-md-2 row-cols-1 mt-5">
+      <div class="col" *ngFor="let item of agentData">
+        <div class="thumb-team-simple border">
+          <img class="rounded-lg" src="{{baseUrl}}{{item?.image?.path}}" alt="Agent Photo"
+            style="height: 200px; width: 100%;">
+          <div class="user-info p-2 d-flex py-4">
+            <div class="me-auto">
+              <h5 class="text-dark mb-2 font-400"><a routerLink="/agent-detail/{{item?._id}}">{{item?.userName}}</a>
+              </h5>
+              <span class="text-secondary font-fifteen">
+                <i class="fas fa-map-marker-alt text-primary"></i> &nbsp;
+                {{item?.address}}, {{item?.city}}, {{item?.state}}
+              </span>
+            </div>
+            <div class="member-score font-small bg-primary d-table text-white ms-auto">
+              <span>{{item?.category}}</span>
+            </div>
           </div>
-          <div class="col">
-              <div class="thumb-team-simple">
-                  <img class="rounded-lg" src="../../assets/assets/images/team/2.jpg" alt="">
-                  <div class="user-info d-flex py-4">
-                      <div class="me-auto">
-                          <h5 class="text-dark mb-2 font-400"><a href="#">Ronald Johnson</a></h5>
-                          <span class="text-secondary font-fifteen">At 1st April, 2012</span>
-                      </div>
-                      <div class="member-score font-small bg-primary d-table text-white ms-auto">
-                          <span>Score: 5.00</span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="col">
-              <div class="thumb-team-simple">
-                  <img class="rounded-lg" src="../../assets/assets/images/team/3.jpg" alt="">
-                  <div class="user-info d-flex py-4">
-                      <div class="me-auto">
-                          <h5 class="text-dark mb-2 font-400"><a href="#">John M. Riddle</a></h5>
-                          <span class="text-secondary font-fifteen">At 1st April, 2012</span>
-                      </div>
-                      <div class="member-score font-small bg-primary d-table text-white ms-auto">
-                          <span>Score: 5.00</span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="col">
-              <div class="thumb-team-simple">
-                  <img class="rounded-lg" src="../../assets/assets/images/team/4.jpg" alt="">
-                  <div class="user-info d-flex py-4">
-                      <div class="me-auto">
-                          <h5 class="text-dark mb-2 font-400"><a href="#">John M. Riddle</a></h5>
-                          <span class="text-secondary font-fifteen">At 1st April, 2012</span>
-                      </div>
-                      <div class="member-score font-small bg-primary d-table text-white ms-auto">
-                          <span>Score: 4.00</span>
-                      </div>
-                  </div>
-              </div>
-          </div>
+        </div>
       </div>
+    </div>
+    <!-- No Agent Data -->
+    <div *ngIf="agentData?.length == 0">
+      <h2 class="text-center main-title">No Agents Found</h2>
+    </div>
   </div>
 </div>
 <!--============== Property Agent End ==============-->
@@ -444,8 +411,16 @@
         <h2 class="down-line w-50 mx-auto mb-4 text-center w-sm-100">What Client Says About Us</h2>
       </div>
     </div>
+    <div class="row">
+      <div class="col-lg-6">
+      </div>
+      <div class="col-lg-6">
+      </div>
+    </div>
+
+
     <div class="row justify-content-center">
-      <div class="col-lg-7">
+      <div class="col-lg-12">
         <div class="testimonial-simple text-center px-5">
           <div class="text-carusel owl-carousel">
             <div class="item" *ngFor="let item of clientReviewData">

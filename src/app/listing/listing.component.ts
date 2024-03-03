@@ -32,17 +32,11 @@ export class ListingComponent implements OnInit {
 
     const cityParam = this.route.snapshot.paramMap.get('city');
     if (cityParam) {
-      // If the city parameter exists, call getPropertyByCity
       this.getPropertyByCity(cityParam);
     } else {
-      // Otherwise, call getAllProperty
       this.getAllProperty();
     }
 
-    // $('.toggle-btn').on('click', function (e:any) {
-    //   e.preventDefault();
-    //   alert('Button clicked!');
-    // });
 
   }
 

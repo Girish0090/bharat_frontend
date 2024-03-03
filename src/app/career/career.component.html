@@ -1,0 +1,92 @@
+<!--============== Page Banner Start ==============-->
+<div class="page-banner-simple mt-5 bg-secondary py-40"
+    style="background-image: url(../../assets/assets/images/background/bg-1.png); background-repeat: no-repeat; background-position: center center; background-size: cover;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h3 class="banner-title text-white">Career</h3>
+                <span class="banner-tagline font-medium text-white">We make strategies, design & development to create
+                    valuable products.</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!--============== Page Banner End ==============-->
+
+<div class="full-row bg-light py-5">
+    <div class="container">
+        <div class="row justify-content-end">
+            <div class="col-md-8">
+                <span class="text-secondary font-italic h5">Think you're good enough? Do you like our projects and want
+                    to be the part of our team? If you can handle this, just apply for right position!</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--============== Career Start ==============-->
+<div class="full-row bg-light pt-0">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-3">
+                <div class="border-end">
+                    <h5 class="text-primary mb-1">Security System Expert</h5>
+                    <span>Melbourne, Australia</span>
+                </div>
+            </div>
+            <div class="col-md-8 offset-md-1">
+                <h5 class="text-secondary mb-2">Mission :</h5>
+                <p>Bibendum proin conubia vulputate diam mi hac mus adipiscing ut euismod diam condimentum volutpat
+                    feugiat diam blandit inceptos. Facilisis pharetra.</p>
+                
+                    <h4 class="down-line mb-4 mt-5">Get In Touch</h4>
+                    <div class="form-simple">
+                        <form [formGroup]="careerForm" id="contact-form" (ngSubmit)="submitCareerForm()">
+                            <div class="row">
+                                <div class="col-md-6 mb-20">
+                                    <label class="mb-2">Full Name:</label>
+                                    <input placeholder="Enter your name" formControlName="name" type="text" class="form-control bg-white">
+                                </div>
+                                <div class="col-md-6 mb-20">
+                                    <label class="mb-2">Your Email:</label>
+                                    <input placeholder="Enter your email" formControlName="email" type="email" class="form-control bg-white">
+                                </div>
+                                <div class="col-md-12 mb-20">
+                                    <label class="mb-2">Contact Number:</label>
+                                    <input placeholder="Enter contact number" formControlName="mobile" type="tel" class="form-control bg-white" maxlength="10" minlength="10">
+                                </div>
+                                <div class="col-md-12 mb-20">
+                                    <label class="mb-2">Education Level:</label>
+
+                                    <select formControlName="education_Level" style="font-size: 16px;"
+                                    class="form-select form-select-lg mb-3"
+                                    aria-label=".form-select-lg example">
+                                    <option selected disabled value="">Education level</option>
+                                    <option value="Graduation">Graduation</option>
+                                    <option value="Post_graduation">Post graduation</option>
+                                    <option value="Phd">P.hd</option>
+                                    <option value="other">other</option>
+                                </select>
+                                </div>
+                               
+                                <div class="col-md-12 mb-20">
+                                    <label class="mb-2">Message:</label>
+                                    <textarea placeholder="Enter your message" formControlName="additional_Msg" class="form-control bg-white" rows="4"></textarea>
+                                </div>
+                                <div class="col-md-12 mb-20">
+                                    <label for="formFileLg" class="form-label">Upload your resume here</label>
+                                    <input type="file" accept=".pdf"  id="fileupload-example-1" class="d-none" (change)="onSelectFile($event)">
+                                    <label class="fileupload_label border rounded font-large" for="fileupload-example-1">Drop your resume here or Click</label>
+                                </div>
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary" name="submit" type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!--============== Career End ==============-->

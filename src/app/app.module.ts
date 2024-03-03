@@ -16,6 +16,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CareerComponent } from './career/career.component';
+import { AgentListingComponent } from './agent-listing/agent-listing.component';
+import { AgentDetailComponent } from './agent-detail/agent-detail.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AboutComponent,
     ListingComponent,
     PropertyDetailComponent,
-    LoaderComponent
+    LoaderComponent,
+    CareerComponent,
+    AgentListingComponent,
+    AgentDetailComponent
   ],
   imports: [
     BrowserModule,

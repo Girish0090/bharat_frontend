@@ -5,8 +5,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <h3 class="banner-title text-white">Career</h3>
-                <span class="banner-tagline font-medium text-white">We make strategies, design & development to create
-                    valuable products.</span>
+                <span class="banner-tagline font-medium text-white">Explore exciting career opportunities with us.</span>
             </div>
         </div>
     </div>
@@ -17,8 +16,7 @@
     <div class="container">
         <div class="row justify-content-end">
             <div class="col-md-8">
-                <span class="text-secondary font-italic h5">Think you're good enough? Do you like our projects and want
-                    to be the part of our team? If you can handle this, just apply for right position!</span>
+                <span class="text-secondary font-italic h5">Discover Limitless Opportunities: Begin Your Career Adventure with Our Dedicated Team.</span>
             </div>
         </div>
     </div>
@@ -30,14 +28,13 @@
         <div class="row mb-5">
             <div class="col-md-3">
                 <div class="border-end">
-                    <h5 class="text-primary mb-1">Security System Expert</h5>
-                    <span>Melbourne, Australia</span>
+                    <h5 class="text-primary mb-1">JOIN OUR TEAM</h5>
+                    <span>Explore opportunities to join our team.</span>
                 </div>
             </div>
             <div class="col-md-8 offset-md-1">
-                <h5 class="text-secondary mb-2">Mission :</h5>
-                <p>Bibendum proin conubia vulputate diam mi hac mus adipiscing ut euismod diam condimentum volutpat
-                    feugiat diam blandit inceptos. Facilisis pharetra.</p>
+                <h5 class="text-secondary mb-2">Check out our company story and Join us.</h5>
+                <p>We seek individuals who share our values as a means of reinforcing and furthering the company's successful philosophy. We are looking for motivated, positive people specializing in:</p>
                 
                     <h4 class="down-line mb-4 mt-5">Get In Touch</h4>
                     <div class="form-simple">
@@ -74,7 +71,7 @@
                                     <textarea placeholder="Enter your message" formControlName="additional_Msg" class="form-control bg-white" rows="4"></textarea>
                                 </div>
                                 <div class="col-md-12 mb-20">
-                                    <label for="formFileLg" class="form-label">Upload your resume here</label>
+                                    <label for="formFileLg" class="form-label">Upload your resume here:</label>
                                     <input type="file" accept=".pdf"  id="fileupload-example-1" class="d-none" (change)="onSelectFile($event)">
                                     <label class="fileupload_label border rounded font-large" for="fileupload-example-1">Drop your resume here or Click</label>
                                 </div>
@@ -90,3 +87,5 @@
     </div>
 </div>
 <!--============== Career End ==============-->
+
+<app-loader *ngIf="loader"></app-loader>

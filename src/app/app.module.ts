@@ -20,6 +20,8 @@ import { CareerComponent } from './career/career.component';
 import { AgentListingComponent } from './agent-listing/agent-listing.component';
 import { AgentDetailComponent } from './agent-detail/agent-detail.component';
 
+import { NgSelectModule } from '@ng-select/ng-select';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +45,8 @@ import { AgentDetailComponent } from './agent-detail/agent-detail.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

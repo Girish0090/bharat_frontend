@@ -31,9 +31,15 @@ export class ListingComponent implements OnInit {
     customJS();
 
     const cityParam = this.route.snapshot.paramMap.get('city');
-    if (cityParam) {
+    const locationParam = this.route.snapshot.paramMap.get('location');
+    console.log(locationParam);
+    
+    if (cityParam && !locationParam) {
       this.getPropertyByCity(cityParam);
-    } else {
+    }else if(cityParam && locationParam){
+      this.getPropertyByLocation(cityParam, locationParam);
+    } 
+    else {
       this.getAllProperty();
     }
 
@@ -162,6 +168,17 @@ export class ListingComponent implements OnInit {
   // Get Property By City
   getPropertyByCity(city: any) {
     this.service.get("getPropertyByCity/" + city).pipe(finalize(() => this.loader = false)).subscribe((res: any) => {
+      if (res?.success) {
+        this.propertyData = res?.data;
+        console.log(this.propertyData);
+      }
+    }, error => {
+      this.service.openSnackBar(error.message, 'Failed');
+    })
+  }
+
+  getPropertyByLocation(city:any,location: any) {
+    this.service.get("getPropertyByCityAndLocation/"+city + "/" +location).pipe(finalize(() => this.loader = false)).subscribe((res: any) => {
       if (res?.success) {
         this.propertyData = res?.data;
         console.log(this.propertyData);

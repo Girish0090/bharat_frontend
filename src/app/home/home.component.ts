@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppserviceService } from '../appservice.service';
 import { finalize } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 declare var customJS: any;
 declare var reviewCarousel: any;
@@ -22,17 +23,22 @@ export class HomeComponent implements OnInit {
   propertyData: any;
   propertyCategoryByCat: any;
   categoryValues: any;
-  agentData:any;
+  agentData: any;
+  cityData:any;
+  cityValue:any;
+  locationsByCity: any;
+  selectedLocation: any;
 
-  constructor(private service: AppserviceService) { }
+  constructor(private service: AppserviceService, private router: Router) { }
 
   ngOnInit(): void {
     this.loader = true;
-    customJS();
+    // customJS();
     this.getAllSlider();
     this.getClientReview();
     this.getAllProperty();
     this.getAllAgents();
+    this.getAllCities();
   }
 
   //get all slider
@@ -40,7 +46,6 @@ export class HomeComponent implements OnInit {
     this.service.get("slider").pipe(finalize(() => this.loader = false)).subscribe((res: any) => {
       if (res?.success) {
         this.sliderData = res?.data;
-        console.log(this.sliderData);
 
         setTimeout(() => {
           $('#slider').layerSlider({
@@ -60,7 +65,9 @@ export class HomeComponent implements OnInit {
             skinsPath: 'assets/assets/skins/'
           });
         }, 1000);
+        console.log(this.loader);
       }
+
     }, error => {
       this.service.openSnackBar(error.message, 'Failed');
     })
@@ -118,8 +125,8 @@ export class HomeComponent implements OnInit {
     })
   }
 
-   // get all property
-   getAllAgents() {
+  // get all property
+  getAllAgents() {
     this.service.get("getAllAgents").pipe(finalize(() => this.loader = false)).subscribe((res: any) => {
       if (res?.success) {
         this.agentData = res?.data;
@@ -128,6 +135,50 @@ export class HomeComponent implements OnInit {
     }, error => {
       this.service.openSnackBar(error.message, 'Failed');
     })
+  }
+
+  // get all cities
+  getAllCities() {
+    this.service.get("getAllCities").pipe(finalize(() => this.loader = false)).subscribe((res: any) => {
+      if (res?.success) {
+        this.cityData = res.data
+        console.log(this.cityData);
+        
+      }
+    }, error => {
+      this.service.openSnackBar(error.message, 'Failed');
+    })
+  }
+
+  // get property location by city
+  getPropertyLocationByCity(city: any) {
+    this.service.get("getLocationByCity/" + city).pipe(finalize(() => this.loader = false)).subscribe((res: any) => {
+      if (res?.success) {
+        this.locationsByCity = res.data;
+        console.log(this.locationsByCity);  
+      }
+    }, error => {
+      this.service.openSnackBar(error.message, 'Failed');
+    })
+  }
+
+  // Get City Value
+  getCityValue(event: any){
+    this.cityValue = event.target.value;
+    this.selectedLocation = null;
+    this.getPropertyLocationByCity(this.cityValue);
+    
+  }
+
+  // Search By City
+  searchByCity(){
+    // Navigate on listing page
+    
+    if (this.selectedLocation == null) {
+      this.router.navigateByUrl("/listing/" + this.cityValue);
+    }else{
+      this.router.navigateByUrl("/listing/" + this.cityValue + "/" + this.selectedLocation);
+    }
   }
 
 }

@@ -1,0 +1,33 @@
+::ng-deep .ng-select-container {
+    border: none !important;
+}
+
+::ng-deep .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
+    white-space: nowrap !important;
+}
+
+/* Add this CSS to your global styles or component-specific styles */
+::ng-deep .ng-select .ng-select-container::after {
+    /* Hide the blinking cursor */
+    caret-color: transparent !important;
+}
+
+::ng-deep .ng-select .ng-arrow-wrapper{
+    display: none;
+}
+
+::ng-deep .ng-select .ng-clear-wrapper {
+    margin-right: 30px !important;
+}
+
+.locationInput{
+    padding: 0px 0px;
+}
+
+::ng-deep .ng-select.ng-select-single .ng-select-container {
+    height: 100%;
+}
+
+.form-icon-right .icon-font{
+    top: 70% !important;
+}

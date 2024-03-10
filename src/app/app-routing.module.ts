@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: 'property-detail/:id', component: PropertyDetailComponent },
   // property listing by city
   { path: 'listing/:city', component: ListingComponent },
+  { path: 'listing/:city/:location', component: ListingComponent },
   { path: 'agent-list', component: AgentListingComponent },
   {path: 'agent-detail/:id', component: AgentDetailComponent},
   { path: '**', redirectTo: 'home', pathMatch: 'full' }

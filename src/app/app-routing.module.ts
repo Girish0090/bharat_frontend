@@ -8,6 +8,7 @@ import { PropertyDetailComponent } from './property-detail/property-detail.compo
 import { CareerComponent } from './career/career.component';
 import { AgentListingComponent } from './agent-listing/agent-listing.component';
 import { AgentDetailComponent } from './agent-detail/agent-detail.component';
+import { GalleryComponent } from './gallery/gallery.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'listing/:city/:location', component: ListingComponent },
   { path: 'agent-list', component: AgentListingComponent },
   {path: 'agent-detail/:id', component: AgentDetailComponent},
+  {path: 'gallery', component: GalleryComponent},
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 

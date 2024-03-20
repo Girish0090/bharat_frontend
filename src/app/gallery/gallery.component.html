@@ -1,0 +1,33 @@
+<!--============== Page Banner Start ==============-->
+<div class="page-banner-simple mt-5 bg-secondary py-40"
+    style="background-image: url(../../assets/assets/images/background/photoBG.jpg); background-repeat: no-repeat; background-position: center center; background-size: cover;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h3 class="banner-title text-white">Photo Gallery</h3>
+                <span class="banner-tagline font-medium text-white">Discover Our Stunning Image Collection.</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!--============== Page Banner End ==============-->
+
+<!--============== Photos Start ==============-->
+<div class="full-row pt-5">
+    <div class="container">
+        <div class="row row-cols-md-3 row-cols-1 g-4">
+            <div class="col" *ngFor="let item of galleryData">
+                <div class="gallery-one">
+                    <div class="photo-overlay">
+                       
+                        <a href="{{baseUrl}}{{item.image.path}}" class="photo-view transation xy-center" data-fancybox="gallery" data-caption="Caption for image">
+                            <span class="flaticon-zoom-in"></span>
+                        </a>
+                        <img src="{{baseUrl}}{{item.image.path}}" alt="real estate template">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--============== Photos End ==============-->

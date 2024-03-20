@@ -34,7 +34,7 @@ export class CareerComponent implements OnInit {
   
   //contact us 
   submitCareerForm() {
-    this.loader = true;
+    // this.loader = true;
     const formData = new FormData();
     formData.append('name', this.careerForm.value.name);
     formData.append('email', this.careerForm.value.email);

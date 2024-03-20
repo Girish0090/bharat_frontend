@@ -21,6 +21,7 @@ import { AgentListingComponent } from './agent-listing/agent-listing.component';
 import { AgentDetailComponent } from './agent-detail/agent-detail.component';
 
 import { NgSelectModule } from '@ng-select/ng-select';
+import { GalleryComponent } from './gallery/gallery.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     LoaderComponent,
     CareerComponent,
     AgentListingComponent,
-    AgentDetailComponent
+    AgentDetailComponent,
+    GalleryComponent
   ],
   imports: [
     BrowserModule,

@@ -36,7 +36,7 @@ export class ContactComponent implements OnInit {
         this.service.openSnackBar(res?.message, 'Success');
       }
     },error=>{
-      this.service.openSnackBar(error.message, 'Failed');
+      this.service.openSnackBar(error.error.message, 'Failed');
     })
   }
 

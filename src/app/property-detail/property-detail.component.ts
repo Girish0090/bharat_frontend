@@ -84,7 +84,9 @@ export class PropertyDetailComponent implements OnInit {
         this.service.openSnackBar(res?.message, 'Success');
       }
     }, error => {
-      this.service.openSnackBar(error.message, 'Failed');
+      console.log(error);
+      
+      this.service.openSnackBar(error.error.message, 'Failed');
     })
   }
 

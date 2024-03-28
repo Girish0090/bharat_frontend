@@ -19,14 +19,14 @@
             <div class="col" *ngFor="let item of galleryData">
                 <div class="gallery-one">
                     <div class="photo-overlay">
-                       
-                        <a href="{{baseUrl}}{{item.image.path}}" class="photo-view transation xy-center" data-fancybox="gallery" data-caption="Caption for image">
+                        <a href="{{baseUrl}}{{item.image.path}}" class="photo-view transation xy-center" data-fancybox="gallery" [attr.data-caption]="item.text_1">
                             <span class="flaticon-zoom-in"></span>
                         </a>
                         <img src="{{baseUrl}}{{item.image.path}}" alt="real estate template">
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </div>

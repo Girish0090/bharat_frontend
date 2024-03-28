@@ -775,8 +775,8 @@ function customJS() {
 function reviewCarousel() {
     $single_carusel_text = $('.text-carusel')
 
-     // Single Text Carusel
-     if ($single_carusel_text.length) {
+    // Single Text Carusel
+    if ($single_carusel_text.length) {
         $single_carusel_text.owlCarousel({
             loop: false,
             margin: 30,
@@ -807,11 +807,11 @@ function reviewCarousel() {
 
 }
 
-function homeCarousel1(){
+function homeCarousel1() {
     $three_item = $('.3block-carusel')
 
-     // Three Block Slide
-     if ($three_item.length) {
+    // Three Block Slide
+    if ($three_item.length) {
         $three_item.owlCarousel({
             loop: false,
             margin: 24,
@@ -819,6 +819,40 @@ function homeCarousel1(){
             dots: true,
             smartSpeed: 500,
             autoplay: false,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                576: {
+                    items: 2
+                },
+                992: {
+                    items: 2
+                },
+                1200: {
+                    items: 3
+                },
+                1400: {
+                    items: 3
+                }
+            }
+        });
+    }
+
+}
+
+function teamCarousel() {
+    $three_item = $('.3block-carusel')
+
+    // Three Block Slide
+    if ($three_item.length) {
+        $three_item.owlCarousel({
+            loop: false,
+            margin: 24,
+            nav: true,
+            dots: true,
+            smartSpeed: 500,
+            autoplay: true,
             responsive: {
                 0: {
                     items: 1

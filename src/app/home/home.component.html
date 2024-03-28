@@ -31,36 +31,43 @@
   <div class="container">
     <div class="row">
       <div class="col col-lg-8 mx-auto">
-          <form class="bg-white shadow-sm quick-search form-icon-right position-relative ">
-            <div class="row row-cols-md-3 row-cols-1 g-3 justify-content-center">
-        
-              <div class="col col-lg-4">
-                <label for="formFile">*City</label>
-                <select class="form-control" (change)="getCityValue($event)">
-                  <option disabled selected>Select City</option>
-                  <option *ngFor="let item of cityData">{{item}}</option>
-                </select>
-              </div>
-              <div class="col col-lg-6">
-                <div class="position-relative">
-                  <!-- <input type="text" class="form-control" name="location" placeholder="Location">-->
-                  
-                  <label for="location">*Location</label>
-                  <ng-select class="form-control locationInput" notFoundText="There is no location" [items]="locationsByCity"
-                  bindLabel="name" placeholder="Select Location"
-                  [(ngModel)]="selectedLocation"
-                  [ngModelOptions]="{standalone: true}"></ng-select>
-                  <i class="flaticon-placeholder flat-mini icon-font y-center text-dark"></i> 
-                </div>
-              </div>
-            
-              <div class="col col-lg-2">
-                <label for="formFile" style="visibility: hidden;">*Button</label>
-                <button class="btn btn-primary w-100" (click)="searchByCity()">Search</button>
-              </div>
-        
+        <form class="bg-white shadow-sm quick-search form-icon-right position-relative ">
+          <div class="row row-cols-md-3 row-cols-1 g-3 justify-content-center">
+
+            <div class="col col-lg-4">
+              <label for="formFile">*City</label>
+              <select class="form-control" (change)="getCityValue($event)">
+                <option disabled selected>Select City</option>
+                <option *ngFor="let item of cityData">{{item}}</option>
+              </select>
             </div>
-          </form>
+            <div class="col col-lg-6">
+              <div class="position-relative">
+                <!-- <input type="text" class="form-control" name="location" placeholder="Location">-->
+
+                <label for="location">*Location</label>
+                <ng-select class="form-control locationInput" notFoundText="There is no location"
+                  [items]="locationsByCity" bindLabel="name" placeholder="Select Location"
+                  [(ngModel)]="selectedLocation" [ngModelOptions]="{standalone: true}"></ng-select>
+                <i class="flaticon-placeholder flat-mini icon-font y-center text-dark"></i>
+              </div>
+            </div>
+
+            <div class="col col-lg-2">
+              <label for="formFile" style="visibility: hidden;">*Button</label>
+              <button class="btn btn-primary w-100" (click)="searchByCity()"> <i class="fas fa-search"></i> Search</button>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <div class="col">
+              <div class="text-center">
+                <p class="text-secondary mb-0">Explore properties in your desired city and location with our convenient search feature.</p>
+              </div>
+            </div>
+          </div>
+
+        </form>
       </div>
     </div>
   </div>
@@ -73,9 +80,9 @@
     <div class="row">
       <div class="col">
         <div class="text-secondary text-center mb-5">
-          <h2 class="text-secondary mx-auto mb-4">Featured Properties</h2>
-          <span class="d-table w-50 w-sm-100 sub-title mx-auto text-center">Mauris primis turpis Laoreet magna felis
-            mi amet quam enim curae. Sodales semper tempor dictum faucibus habitasse.</span>
+          <h2 class="text-secondary mx-auto mb-4">Exclusive Project Picks</h2>
+          <span class="d-table w-50 w-sm-100 sub-title mx-auto text-center">Experience luxury living with our carefully
+            selected premier properties.</span>
         </div>
       </div>
     </div>
@@ -87,27 +94,51 @@
             <div class="property-grid-1 property-block bg-white transation-this hover-shadow">
               <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom">
                 <div class="cata position-absolute">
-                  <span class="sale bg-secondary text-white">{{item?.property_type}}</span>
+                  <span [ngClass]="{'bg-success': item?.property_type === 'Sale', 'bg-danger': item?.property_type === 'Sold'}" class="sale text-white">
+                    <ng-container *ngIf="item?.property_type === 'Sale'">For {{item?.property_type}}</ng-container>
+                    <ng-container *ngIf="item?.property_type === 'Sold'">{{item?.property_type}}</ng-container>
+                  </span>
+                  
                 </div>
                 <a routerLink="/property-detail/{{item?._id}}"><img src="{{baseUrl}}{{item?.property_image[0]?.path}}"
-                    alt="Image Not Found!"></a>
+                    alt="Image Not Found!" style="height: 300px;"></a>
                 <a class="listing-ctg text-white"><i
                     class="fa-solid fa-building"></i><span>{{item?.property_category}}</span></a>
 
               </div>
               <div class="property_text p-4">
-                <span class="listing-price">₹{{item?.property_price}}</span>
-                <h5 class="listing-title"><a routerLink="/property-detail/{{item?._id}}">{{item?.property_name}}</a>
+                <!-- <span class="listing-price">₹{{item?.property_price}}</span> -->
+                <h5 class="listing-title"><a><b>{{item?.property_name}}</b></a>
                 </h5>
-                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> {{item?.property_location}} </span>
-                <ul class="d-flex quantity font-fifteen">
-                  <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>{{item?.no_of_bedrooms}}</li>
-                  <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>{{item?.no_of_bathrooms}}</li>
-                </ul>
+                <span>{{item?.property_description.substring(0, item?.property_description.indexOf(' ', 80))}}...</span>
+                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> {{item?.property_address + ', ' +
+                  item?.property_location}} </span>
+                <hr style="margin: 8px 0px !important;">
+
+                <div class="d-flex quantity font-fifteen">
+                  <li title="Beds" class="p-1 bd-highlight"><span><i
+                        class="fa-solid fa-bed"></i></span>{{item?.no_of_bedrooms}}</li>
+                  <li title="Baths" class="p-1 bd-highlight"><span><i
+                        class="fa-solid fa-shower"></i></span>{{item?.no_of_bathrooms}}</li>
+                  <li class="ms-auto p-1 bd-highlight"><a class="btn btn-primary rounded-pill"
+                      style="line-height: 25px !important; padding: 0 15px !important;" routerLink="/property-detail/{{item?._id}}">View Detail</a></li>
+                </div>
               </div>
 
             </div>
           </div>
+        </div>
+
+        <div *ngIf="propertyData?.length == 0">
+          <h2 class="text-center main-title">No Property Found</h2>
+        </div>
+
+      </div>
+    </div>
+    <div class="row mt-4" *ngIf="propertyData?.length > 0">
+      <div class="col">
+        <div class="text-center">
+          <button class="btn btn-primary" routerLink="/listing">View More</button>
         </div>
       </div>
     </div>
@@ -121,9 +152,9 @@
     <div class="row">
       <div class="col">
         <div class="text-secondary text-center mb-5">
-          <h2 class="text-secondary mx-auto mb-4">Find Properties in These Cities</h2>
-          <span class="d-table w-50 w-sm-100 sub-title mx-auto text-center">Mauris primis turpis Laoreet magna felis
-            mi amet quam enim curae. Sodales semper tempor dictum faucibus habitasse.</span>
+          <h2 class="text-secondary mx-auto mb-4">Find Projects in These Cities</h2>
+          <span class="d-table w-50 w-sm-100 sub-title mx-auto text-center">Explore available properties in these
+            vibrant cities.</span>
         </div>
       </div>
     </div>
@@ -131,55 +162,55 @@
       <div class="col">
         <div class="hover-img-zoom text-center mb-4">
           <div class="overflow-hidden transation thumbnail-img rounded-circle bg-secondary">
-            <img src="assets/assets/images/location/3.png" alt="image not found">
+            <img src="assets/assets/images/location/i_love_ajmer.jpg" alt="image not found">
           </div>
           <div class="mt-3">
             <h5 class="transation font-400"><a routerLink="/listing/ajmer">AJMER</a></h5>
-            <p>82 Properties</p>
+            <p>82+ Properties</p>
           </div>
         </div>
       </div>
       <div class="col">
         <div class="hover-img-zoom text-center mb-4">
           <div class="overflow-hidden transation thumbnail-img rounded-circle bg-secondary">
-            <img src="assets/assets/images/location/1.png" alt="image not found">
+            <img src="assets/assets/images/location/jaipur.jpg" alt="image not found">
           </div>
           <div class="mt-3">
             <h5 class="transation font-400"><a routerLink="/listing/jaipur">JAIPUR</a></h5>
-            <p>57 Properties</p>
+            <p>57+ Properties</p>
           </div>
         </div>
       </div>
       <div class="col">
         <div class="hover-img-zoom text-center mb-4">
           <div class="overflow-hidden transation thumbnail-img rounded-circle bg-secondary">
-            <img src="assets/assets/images/location/2.png" alt="image not found">
+            <img src="assets/assets/images/location/kota.jpeg" alt="image not found">
           </div>
           <div class="mt-3">
             <h5 class="transation font-400"><a routerLink="/listing/kota">KOTA</a></h5>
-            <p>170 Properties</p>
+            <p>17+ Properties</p>
           </div>
         </div>
       </div>
       <div class="col">
         <div class="hover-img-zoom text-center mb-4">
           <div class="overflow-hidden transation thumbnail-img rounded-circle bg-secondary">
-            <img src="assets/assets/images/location/4.png" alt="image not found">
+            <img src="assets/assets/images/location/mumbai.jpg" alt="image not found">
           </div>
           <div class="mt-3">
             <h5 class="transation font-400"><a routerLink="/listing/panvel">PANVEL,(MUMBAI)</a></h5>
-            <p>17 Properties</p>
+            <p>17+ Properties</p>
           </div>
         </div>
       </div>
       <div class="col">
         <div class="hover-img-zoom text-center mb-4">
           <div class="overflow-hidden transation thumbnail-img rounded-circle bg-secondary">
-            <img src="assets/assets/images/location/5.png" alt="image not found">
+            <img src="assets/assets/images/location/indore.jpg" alt="image not found">
           </div>
           <div class="mt-3">
             <h5 class="transation font-400"><a routerLink="/listing/indore">INDORE</a></h5>
-            <p>27 Properties</p>
+            <p>27+ Properties</p>
           </div>
         </div>
       </div>
@@ -193,16 +224,16 @@
   <div class="container">
     <div class="row align-items-center justify-content-between">
       <div class="col-md-6">
-        <h2 class="main-title">Featured Projects</h2>
+        <h2 class="main-title">Choose Your Category</h2>
       </div>
       <div class="col-md-6">
         <div class="mix-tab">
           <ul class="nav-tab-border-active ms-auto d-table">
-            <li (click)="categoryValue('all')" data-filter="all" value="all">All</li>
-            <li (click)="categoryValue('Residential')" data-filter=".house" value="Residential">Residential</li>
-            <li (click)="categoryValue('Commercial')" data-filter=".office" value="Commercial">Commercial</li>
-            <li (click)="categoryValue('Industrial')" data-filter=".appartment" value="Industrial">Industrial</li>
-            <li (click)="categoryValue('Villa')" data-filter=".land" value="Villa">Villa</li>
+            <li [ngClass]="{'mixitup-control-active': categoryValues === 'all'}" (click)="categoryValue('all')" data-filter="all" value="all">All</li>
+            <li [ngClass]="{'mixitup-control-active': categoryValues === 'Residential'}" (click)="categoryValue('Residential')" data-filter=".house" value="Residential">Residential</li>
+            <li [ngClass]="{'mixitup-control-active': categoryValues === 'Commercial'}" (click)="categoryValue('Commercial')" data-filter=".office" value="Commercial">Commercial</li>
+            <li [ngClass]="{'mixitup-control-active': categoryValues === 'Industrial'}" (click)="categoryValue('Industrial')" data-filter=".appartment" value="Industrial">Industrial</li>
+            <li [ngClass]="{'mixitup-control-active': categoryValues === 'Villa'}" (click)="categoryValue('Villa')" data-filter=".land" value="Villa">Villa</li>
           </ul>
         </div>
       </div>
@@ -211,27 +242,37 @@
       <div class="col">
         <div class="mix-element row row-cols-lg-3 row-cols-md-2 row-cols-1 mt-4">
           <div class="col mix house land mb-30" *ngFor="let item of propertyCategoryByCat">
-            <!-- Property Grid -->
-            <div class="property-grid-1 property-block bg-white transation-this hover-shadow">
+             <!-- Property Grid -->
+             <div class="property-grid-1 property-block bg-white transation-this hover-shadow">
               <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom">
                 <div class="cata position-absolute">
-                  <span class="sale bg-secondary text-white">{{item?.property_type}}</span>
-                </div>
+                  <span [ngClass]="{'bg-success': item?.property_type === 'Sale', 'bg-danger': item?.property_type === 'Sold'}" class="sale text-white">
+                    <ng-container *ngIf="item?.property_type === 'Sale'">For {{item?.property_type}}</ng-container>
+                    <ng-container *ngIf="item?.property_type === 'Sold'">{{item?.property_type}}</ng-container>
+                  </span>                </div>
                 <a routerLink="/property-detail/{{item?._id}}"><img src="{{baseUrl}}{{item?.property_image[0]?.path}}"
-                    alt="Image Not Found!"></a>
+                    alt="Image Not Found!" style="height: 300px;"></a>
                 <a class="listing-ctg text-white"><i
                     class="fa-solid fa-building"></i><span>{{item?.property_category}}</span></a>
 
               </div>
               <div class="property_text p-4">
-                <span class="listing-price">₹{{item?.property_price}}</span>
-                <h5 class="listing-title"><a routerLink="/property-detail/{{item?._id}}">{{item?.property_name}}</a>
+                <!-- <span class="listing-price">₹{{item?.property_price}}</span> -->
+                <h5 class="listing-title"><a><b>{{item?.property_name}}</b></a>
                 </h5>
-                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> {{item?.property_location}} </span>
-                <ul class="d-flex quantity font-fifteen">
-                  <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>{{item?.no_of_bedrooms}}</li>
-                  <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>{{item?.no_of_bathrooms}}</li>
-                </ul>
+                <span>{{item?.property_description.substring(0, item?.property_description.indexOf(' ', 80))}}...</span>
+                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> {{item?.property_address + ', ' +
+                  item?.property_location}} </span>
+                <hr style="margin: 8px 0px !important;">
+
+                <div class="d-flex quantity font-fifteen">
+                  <li title="Beds" class="p-1 bd-highlight"><span><i
+                        class="fa-solid fa-bed"></i></span>{{item?.no_of_bedrooms}}</li>
+                  <li title="Baths" class="p-1 bd-highlight"><span><i
+                        class="fa-solid fa-shower"></i></span>{{item?.no_of_bathrooms}}</li>
+                  <li class="ms-auto p-1 bd-highlight"><a class="btn btn-primary rounded-pill"
+                      style="line-height: 25px !important; padding: 0 15px !important;" routerLink="/property-detail/{{item?._id}}">View Detail</a></li>
+                </div>
               </div>
 
             </div>
@@ -243,6 +284,15 @@
         </div>
       </div>
     </div>
+
+    <div class="row mt-4" *ngIf="propertyCategoryByCat?.length > 0">
+      <div class="col">
+        <div class="text-center">
+          <button class="btn btn-primary" routerLink="/listing">View More</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 <!--============== Property Tab End ==============-->
@@ -304,10 +354,11 @@
         <div class="thumb-team-simple border">
           <img class="rounded-lg" src="{{baseUrl}}{{item?.image?.path}}" alt="Agent Photo"
             style="height: 200px; width: 100%;">
-          <div class="user-info p-2 d-flex py-4">
+          <div class="user-info p-2 d-flex py-4" style="background-color: #ffffff !important;">
             <div class="me-auto">
-              <h5 class="text-dark mb-2 font-400"><a routerLink="/agent-detail/{{item?._id}}">{{item?.userName}}</a>
+              <h5 class="text-dark mb-2 font-400"><a routerLink="/agent-detail/{{item?._id}}"><b>{{item?.userName}}</b></a>
               </h5>
+              <span><b>Email:-</b> {{item?.email}}</span> <br>
               <span class="text-secondary font-fifteen">
                 <i class="fas fa-map-marker-alt text-primary"></i> &nbsp;
                 {{item?.address}}, {{item?.city}}, {{item?.state}}
@@ -372,9 +423,9 @@
   <div class="container position-relative z-index-9">
     <div class="row align-items-center">
       <div class="col-lg-7 text-white">
-        <h3 class="text-white mb-3">Do you want to sell your property ?</h3>
-        <p>You can also fill out our online form if you are interested in learning more.</p>
-        <span class="h6 d-inline-block text-white">Please Call : +902 100 523551</span>
+        <h3 class="text-white mb-3">Discover our company: experts in real estate, committed to your success.</h3>
+        <p>With us, your property journey is in trusted hands.</p>
+        <span class="h6 d-inline-block text-white">Please Call : +91 95494-43222</span>
       </div>
       <div class="col-lg-5">
         <div class="simple-video-play d-flex">
@@ -406,8 +457,8 @@
         <div class="bg-primary p-5">
           <div class="row">
             <div class="col-lg-9 col-md-8">
-              <h3 class="text-white xs-text-center">Are you looking for a House?</h3>
-              <span class="sub-title text-white">We can help you realize your dream of a new home</span>
+              <h3 class="text-white xs-text-center">Ready to open the door to your future?</h3>
+              <span class="sub-title text-white">Let us navigate the path to your dream residence together</span>
             </div>
             <div class="col-lg-3 col-md-4 d-flex align-items-center">
               <a routerLink="listing" class="btn btn-white d-table xs-mx-auto ms-auto">Explore Property</a>

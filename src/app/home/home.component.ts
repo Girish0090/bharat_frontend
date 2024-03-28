@@ -65,7 +65,6 @@ export class HomeComponent implements OnInit {
             skinsPath: 'assets/assets/skins/'
           });
         }, 1000);
-        console.log(this.loader);
       }
 
     }, error => {

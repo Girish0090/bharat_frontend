@@ -19,12 +19,11 @@
         <div class="row">
             <div class="col-md-5 order-md-2">
                 <h4 class="down-line mb-4">Get In Touch</h4>
-                <p>Looking for help or any support? We're available 24 hours a day.</p>
+                <p>Have questions or need assistance? Reach out to us anytime; we're here round-the-clock to help.</p>
                 <div class="mb-3">
                     <ul>
                         <li class="mb-3">
-                            <h6 class="mb-0">Office Address :</h6> Level 13, 2 Elizabeth St, Melbourne, Victoria 3000
-                            Australia
+                            <h6 class="mb-0">Office Address :</h6> Opp. Metro Piller No.16, Near Mansarovr Metro Station, Jaipur, Rajasthan
                         </li>
                         <li class="mb-3">
                             <h6>Contact Number :</h6> (+91) 95494-43222, (+91) 93511-11622
@@ -49,26 +48,31 @@
                                 <label class="mb-2">Full Name:</label>
                                 <input placeholder="Enter your name" formControlName="name" type="text"
                                     class="form-control bg-white" required="">
+                                    <small class="text-danger" *ngIf="!contactForm.get('name')?.valid && submitForm">Please Enter Your Name</small>
                             </div>
                             <div class="col-md-6 mb-20">
                                 <label class="mb-2">Your Email:</label>
                                 <input placeholder="Enter your email" formControlName="email" type="email"
                                     class="form-control bg-white" required="">
+                                    <small class="text-danger" *ngIf="!contactForm.get('email')?.valid && submitForm">Please Enter Your Email</small>
                             </div>
                             <div class="col-md-12 mb-20">
                                 <label class="mb-2">Subject:</label>
                                 <input placeholder="Enter subject" formControlName="subject" type="text"
                                     class="form-control bg-white" required="">
+                                    <small class="text-danger" *ngIf="!contactForm.get('subject')?.valid && submitForm">Please Enter Subject</small>
                             </div>
                             <div class="col-md-12 mb-20">
                                 <label class="mb-2">Contact Number:</label>
                                 <input placeholder="Enter contact number" formControlName="mobile" type="tel"
-                                    class="form-control bg-white" required="">
+                                    class="form-control bg-white" required="" maxlength="10" onkeypress="return /[0-9 ]/i.test(event.key)">
+                                    <small class="text-danger" *ngIf="!contactForm.get('mobile')?.valid && submitForm">Please Enter Contact Number</small>
                             </div>
                             <div class="col-md-12 mb-20">
                                 <label class="mb-2">Message:</label>
                                 <textarea placeholder="Enter your message" formControlName="message"
                                     class="form-control bg-white" rows="8" required=""></textarea>
+                                    <small class="text-danger" *ngIf="!contactForm.get('message')?.valid && submitForm">Please Enter Message</small>
                             </div>
                             <div class="col-md-12">
                                 <button class="btn btn-primary" name="submit" type="submit">Send Message</button>

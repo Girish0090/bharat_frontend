@@ -4,3 +4,8 @@
     color: var(--theme-white-color) !important;
     border-radius: 50% !important;
 }
+.fa-search {
+    right: 0px !important;
+    top: 0% !important;
+    position: relative !important;
+}

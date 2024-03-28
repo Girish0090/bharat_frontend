@@ -31,3 +31,9 @@
 .form-icon-right .icon-font{
     top: 70% !important;
 }
+
+.fa-search {
+    right: 0px !important;
+    top: 0% !important;
+    position: relative !important;
+}

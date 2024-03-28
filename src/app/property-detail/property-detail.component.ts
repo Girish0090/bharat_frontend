@@ -18,6 +18,7 @@ export class PropertyDetailComponent implements OnInit {
   baseUrl: any = environment.imageUrl;
   loader: boolean = false;
   propertyData: any;
+  submitForm: boolean =false;
 
   constructor(private route: ActivatedRoute, private service: AppserviceService, private fb: FormBuilder) { }
 
@@ -78,16 +79,23 @@ export class PropertyDetailComponent implements OnInit {
   // property submit 
   propertySubmit() {
     this.loader = true;
-    this.service.post("projectContact", this.propertyForm.value).pipe(finalize(() => (this.loader = false))).subscribe((res: any) => {
-      if (res?.success) {
-        this.propertyForm.reset();
-        this.service.openSnackBar(res?.message, 'Success');
-      }
-    }, error => {
-      console.log(error);
-      
-      this.service.openSnackBar(error.error.message, 'Failed');
-    })
+    if (this.propertyForm.valid) {
+      this.service.post("projectContact", this.propertyForm.value).pipe(finalize(() => (this.loader = false))).subscribe((res: any) => {
+        if (res?.success) {
+          this.propertyForm.reset();
+          this.submitForm = false;
+          this.service.openSnackBar(res?.message, 'Success');
+        }
+      }, error => {
+        console.log(error);
+        
+        this.service.openSnackBar(error.error.message, 'Failed');
+      })
+    } else {
+      this.loader = false;
+      this.submitForm = true;
+    }
+
   }
 
 

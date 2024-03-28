@@ -13,6 +13,7 @@ export class CareerComponent implements OnInit {
   
   loader:boolean = false;
   pdf:any;
+  submitForm: boolean = false;
 
   constructor(private service:AppserviceService,private fb:FormBuilder) { }
 
@@ -34,19 +35,20 @@ export class CareerComponent implements OnInit {
   
   //contact us 
   submitCareerForm() {
-    // this.loader = true;
-    const formData = new FormData();
-    formData.append('name', this.careerForm.value.name);
-    formData.append('email', this.careerForm.value.email);
-    formData.append('mobile', this.careerForm.value.mobile);
-    formData.append('education_Level', this.careerForm.value.education_Level);
-    formData.append('additional_Msg', this.careerForm.value.additional_Msg);
-    formData.append('resumePDF', this.pdf, this.pdf?.name);
-
+    this.loader = true;
+    
     if (this.careerForm.valid) {
+      const formData = new FormData();
+      formData.append('name', this.careerForm.value.name);
+      formData.append('email', this.careerForm.value.email);
+      formData.append('mobile', this.careerForm.value.mobile);
+      formData.append('education_Level', this.careerForm.value.education_Level);
+      formData.append('additional_Msg', this.careerForm.value.additional_Msg);
+      formData.append('resumePDF', this.pdf, this.pdf?.name);
       
       this.service.post("joinUs",formData).pipe(finalize(()=>(this.loader = false))).subscribe((res:any)=>{
         if(res?.success){
+          this.submitForm = false;
           this.careerForm.reset();
           this.service.openSnackBar(res?.message, 'Success');
         }
@@ -54,6 +56,9 @@ export class CareerComponent implements OnInit {
         this.service.openSnackBar(error.message, 'Failed');
       })
 
+    }else{
+      this.submitForm = true;
+      this.loader = false;
     }
   }
 

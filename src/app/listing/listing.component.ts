@@ -28,7 +28,7 @@ export class ListingComponent implements OnInit {
   constructor(private service: AppserviceService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    customJS();
+    // customJS();
 
     const cityParam = this.route.snapshot.paramMap.get('city');
     const locationParam = this.route.snapshot.paramMap.get('location');

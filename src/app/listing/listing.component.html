@@ -9,7 +9,7 @@
                         <li class="breadcrumb-item active text-primary" aria-current="page">Listing</li>
                     </ol>
                 </nav>
-                <h3 class="text-secondary">Property Listing</h3>
+                <h3 class="text-secondary">Project Listing</h3>
             </div>
         </div>
     </div>
@@ -22,12 +22,13 @@
         <div class="row">
             <div class="col-lg-12">
                 <form class="quick-search form-icon-right position-relative" action="#" method="post">
-                    <div class="row row-cols-lg-6 row-cols-md-4 row-cols-1 g-3">
+                    <div class="row row-cols-lg-5 row-cols-md-4 row-cols-1 g-3">
 
                         <div class="col">
                             <label for="pType">Property Category</label>
                             <select id="pType" class="form-control" name="selectedCategory"
-                                [(ngModel)]="selectedCategory" (change)="selectedType='';selectedBedrooms='';selectedBathrooms='' ">
+                                [(ngModel)]="selectedCategory"
+                                (change)="selectedType='';selectedBedrooms='';selectedBathrooms='' ">
                                 <option disabled selected value="">Choose Category</option>
                                 <option value="residential">Residential</option>
                                 <option value="commercial">Commercial</option>
@@ -40,18 +41,20 @@
                             <select id="pStatus" class="form-control" name="selectedType" [(ngModel)]="selectedType"
                                 (change)="selectedCategory='';selectedBedrooms='';selectedBathrooms=''">
                                 <option disabled selected value="">Choose Type</option>
-                                <option value="rent">For Rent</option>
+                                <option value="sold">For Sold</option>
                                 <option value="sale">For Sale</option>
                             </select>
                         </div>
                         <div class="col">
                             <label for="location">Location</label>
                             <div class="position-relative">
-                                <input type="text" class="form-control" name="location" [(ngModel)]="selectedLocation" placeholder="Location" (input)="selectedCategory='';selectedBedrooms='';selectedBathrooms=''; selectedType='';">
+                                <input type="text" class="form-control" name="location" [(ngModel)]="selectedLocation"
+                                    placeholder="Location"
+                                    (input)="selectedCategory='';selectedBedrooms='';selectedBathrooms=''; selectedType='';">
                                 <i class="flaticon-placeholder flat-mini icon-font y-center text-dark"></i>
                             </div>
                         </div>
-                        <div class="col">
+                        <!-- <div class="col">
                             <label for="data-range-price">Price Range</label>
                             <div class="position-relative">
                                 <button class="form-control price-toggle toggle-btn"
@@ -60,27 +63,29 @@
                                 <div id="data-range-price" class="price_range price-range-toggle">
                                     <div class="area-filter price-filter">
                                         <span class="price-slider">
-                                            <input class="filter_price" type="text" name="price" value="0;10000000"  />
+                                            <input class="filter_price" type="text" name="price" value="0;10000000" />
                                         </span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col">
                             <label for="bedrooms">Bedrooms</label>
-                            <select class="form-control" name="bedrooms" [(ngModel)]="selectedBedrooms" (change)="selectedType=''; selectedCategory=''; selectedBathrooms=''">
-                                <option disabled selected  value="">Choose Bedrooms</option>
+                            <select class="form-control" name="bedrooms" [(ngModel)]="selectedBedrooms"
+                                (change)="selectedType=''; selectedCategory=''; selectedBathrooms=''">
+                                <option disabled selected value="">Choose Bedrooms</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                                 <option value="5">5</option>
                             </select>
-                            
+
                         </div>
                         <div class="col">
                             <label for="bathrooms">Bathrooms</label>
-                            <select class="form-control" name="bathrooms" [(ngModel)]="selectedBathrooms" (change)="selectedType=''; selectedCategory=''; selectedBedrooms=''">
+                            <select class="form-control" name="bathrooms" [(ngModel)]="selectedBathrooms"
+                                (change)="selectedType=''; selectedCategory=''; selectedBedrooms=''">
                                 <option disabled selected value="">Choose Bathrooms</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -89,11 +94,11 @@
                                 <option value="5">5</option>
                             </select>
                         </div>
-                        
+
                     </div>
                     <div class="row mt-2">
                         <div class="col text-center mt-2">
-                            <button class="btn btn-primary w-25 mx-auto" (click)="getSearchedProperty()">Search</button>
+                            <button class="btn btn-primary w-25 mx-auto" (click)="getSearchedProperty()"><i class="fas fa-search"></i> Search</button>
                         </div>
                     </div>
                 </form>
@@ -109,10 +114,10 @@
         <div class="row">
             <div class="col">
                 <div class="woo-filter-bar p-3 d-flex flex-wrap justify-content-between">
-                    <div class="d-flex flex-wrap">
+                    <div class="d-flex align-items-center flex-wrap">
+                        <span>Sort By:-</span> &nbsp;
                         <div class="woocommerce-ordering" *ngIf="propertyData?.length > 0">
                             <select name="orderby1" (change)="getSorting($event)">
-                                <option disabled selected>Sort By :-</option>
                                 <option value="relevance">Relevance</option>
                                 <option value="asc">Name A-Z</option>
                                 <option value="desc">Name Z-A</option>
@@ -122,7 +127,8 @@
                     <div class="d-flex">
                         <!-- <h5>Showing 1-{{projectList?.length}} of {{projectList?.length}} results</h5> -->
 
-                        <span class="woocommerce-ordering-pages me-4 font-fifteen">Showing {{propertyData?.length}} result</span>
+                        <span class="woocommerce-ordering-pages me-4 font-fifteen">Showing {{propertyData?.length}}
+                            result</span>
                         <form class="view-category" method="get">
                             <button title="List" class="list-view" value="list" name="display" type="submit"><i
                                     class="flaticon-grid-1 flat-mini"></i></button>
@@ -139,27 +145,36 @@
                 <div class="property-grid-1 bg-white property-block border transation-this hover-shadow mb-30">
                     <div
                         class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom m-2">
-                        <div class="cata position-absolute"><span class="sale bg-secondary text-white">For
-                                {{item?.property_type}}</span></div>
+                        <div class="cata position-absolute">
+                            <span [ngClass]="{'bg-success': item?.property_type === 'Sale', 'bg-danger': item?.property_type === 'Sold'}" class="sale text-white">
+                                <ng-container *ngIf="item?.property_type === 'Sale'">For {{item?.property_type}}</ng-container>
+                                <ng-container *ngIf="item?.property_type === 'Sold'">{{item?.property_type}}</ng-container>
+                              </span>                        </div>
                         <a routerLink="/property-detail/{{item?._id}}"><img
-                                src="{{baseUrl}}{{item?.property_image[0]?.path}}" alt="Image Not Found!"></a>
-                        <span class="price-on text-white font-medium font-500"
-                            style="margin-left: 10px !important;">₹{{item?.property_price}}/</span>
+                                src="{{baseUrl}}{{item?.property_image[0]?.path}}" alt="Image Not Found!" style="height: 300px;"></a>
+                        <!-- <span class="price-on text-white font-medium font-500"
+                            style="margin-left: 10px !important;">₹{{item?.property_price}}/</span> -->
 
                     </div>
                     <div class="property_text p-3">
-                        <span class="d-inline-block text-primary">{{item?.property_category}}</span>
+                        <span class="d-inline-block text-primary"><i class="fa-solid fa-building"></i>
+                            {{item?.property_category}}</span>
                         <h5 class="mt-2"><a class="font-400 text-secondary"
-                                routerLink="/property-detail/{{item?._id}}">{{item?.property_name}}</a></h5>
+                                routerLink="/property-detail/{{item?._id}}"><b>{{item?.property_name}}</b></a></h5>
+                        <span>{{item?.property_description.substring(0, item?.property_description.indexOf(' ',
+                            80))}}...</span>
+
                         <span class="my-3 d-block"><i class="fas fa-map-marker-alt text-primary"></i>
                             {{item?.property_address}}, {{item?.property_location}}</span>
                         <div class="quantity">
-                            <ul class="d-flex quantity font-fifteen">
-                                <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>{{item?.no_of_bedrooms}}
-                                </li>
-                                <li title="Baths"><span><i
-                                            class="fa-solid fa-shower"></i></span>{{item?.no_of_bathrooms}}</li>
-                            </ul>
+                            <div class="d-flex quantity font-fifteen">
+                                <li title="Beds" class="p-1 bd-highlight"><span><i
+                                      class="fa-solid fa-bed"></i></span>{{item?.no_of_bedrooms}}</li>
+                                <li title="Baths" class="p-1 bd-highlight"><span><i
+                                      class="fa-solid fa-shower"></i></span>{{item?.no_of_bathrooms}}</li>
+                                <li class="ms-auto p-1 bd-highlight"><a class="btn btn-primary rounded-pill"
+                                    style="line-height: 25px !important; padding: 0 15px !important;" routerLink="/property-detail/{{item?._id}}">View Detail</a></li>
+                              </div>
                         </div>
                     </div>
 

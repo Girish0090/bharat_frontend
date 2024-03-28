@@ -51,21 +51,25 @@
                                     <div class="col-md-12 col-sm-12">
                                         <input class="form-control" id="name" name="name" placeholder="Name"
                                             type="text" formControlName="name">
+                                            <small class="text-danger" *ngIf="!propertyForm.get('name')?.valid && submitForm">Please Enter Your Name</small>
                                     </div>
                                     
                                     <div class="col-md-12 col-sm-12">
                                         <input class="form-control" id="mobile" name="mobile" placeholder="Mobile Number"
                                             type="text" formControlName="mobile" maxlength="10" minlength="10">
+                                            <small class="text-danger" *ngIf="!propertyForm.get('mobile')?.valid && submitForm">Please Enter Your Mobile</small>
                                     </div>
 
                                     <div class="col-md-12 col-sm-12">
                                         <input class="form-control" id="email" name="email" placeholder="Email Address"
                                             type="email" formControlName="email">
+                                            <small class="text-danger" *ngIf="!propertyForm.get('email')?.valid && submitForm">Please Enter Your Email</small>
                                     </div>
 
                                     <div class="col-md-12 col-sm-12">
                                         <textarea class="form-control" id="message" rows="5" name="message"
                                             placeholder="Message" formControlName="message"></textarea>
+                                            <small class="text-danger" *ngIf="!propertyForm.get('message')?.valid && submitForm">Please Enter Your Message</small>
                                     </div>
                                     <div class="col-md-12 col-sm-6">
                                         <button class="btn btn-primary" id="send" value="send"
@@ -91,15 +95,15 @@
                             <span class="listing-location"><i class="fas fa-map-marker-alt text-primary"></i>
                                 {{propertyData?.property_address}}, {{propertyData?.property_location}}</span>
                         </div>
-                        <div class="col-auto ms-auto xs-m-0 text-end xs-text-start pb-4">
+                        <!-- <div class="col-auto ms-auto xs-m-0 text-end xs-text-start pb-4">
                             <span class="listing-price">₹{{propertyData?.property_price}}<small>( Price Only
                                     )</small></span>
                             <span
                                 class="text-white font-mini px-2 rounded product-status ms-auto xs-m-0 py-1 bg-primary"><i
                                     class="fas fa-check"></i> Available</span>
-                        </div>
+                        </div> -->
                         <div class="col-12">
-                            <div class="product-offers mt-2">
+                            <!-- <div class="product-offers mt-2">
                                 <ul class="product-offers-list">
                                     <li class="product-offer-item"> <strong>Special Price </strong>Get extra 19% off
                                         (price inclusive of discount)</li>
@@ -108,7 +112,7 @@
                                     <li class="product-offer-item"> <strong>No cost EMI $49/month.</strong> Standard EMI
                                         also available</li>
                                 </ul>
-                            </div>
+                            </div> -->
                             <ul class="quick-meta mt-4">
                                
                                 <li class="bg-light"><a title="Download PDF" class="text-dark"><i
@@ -117,13 +121,7 @@
                             </ul>
 
                             <hr>
-                            <div class="mt-2">
-                                <ul class="list-three-fold-width">
-                                    <li><span class="font-500">BedRooms:</span> {{propertyData?.no_of_bedrooms}}</li>
-                                    <li><span class="font-500">BathRooms:</span> {{propertyData?.no_of_bathrooms}}</li>
-                                    <li><span class="font-500">Swimming:</span> Yes </li>
-                                </ul>
-                            </div>
+                           
                         </div>
                     </div>
                     <div class="row row-cols-1">
@@ -133,6 +131,12 @@
                                 {{propertyData?.property_description}}
                             </p>
                             
+                        </div>
+                        <div class="mt-2">
+                            <ul class="list-three-fold-width">
+                                <li><span class="font-500">No. of BedRooms:-</span> {{propertyData?.no_of_bedrooms}}</li>
+                                <li><span class="font-500">No. of BathRooms:-</span> {{propertyData?.no_of_bathrooms}}</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -177,150 +181,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="property-overview border rounded bg-white p-30 mb-30">
-                    <div class="row row-cols-1">
-                        <div class="col">
-                            <h5 class="mb-3">Nearby Places</h5>
-                            <div class="tab-simple tab-action">
-                                <ul class="nav-tab-line list-color-secondary d-table mb-3">
-                                    <li class="active" data-target="#tb-panel-1">Hospital</li>
-                                    <li data-target="#tb-panel-2">Shopping</li>
-                                    <li data-target="#tb-panel-3">School</li>
-                                    <li data-target="#tb-panel-4">Resturant</li>
-                                </ul>
-                                <div class="tab-element">
-                                    <!-- Hosiptan data -->
-                                    <div class="tab-pane tab-hide" id="tb-panel-1" style="display: block;">
-                                        <div class="table-striped overflow-x-scroll pb-2">
-                                            <table class="w-100">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col" class="font-fifteen">Name</th>
-                                                        <th scope="col" class="font-fifteen">Distance</th>
-                                                        <th scope="col" class="font-fifteen">Type</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Massachusetts General Hospital</td>
-                                                        <td>23.7 km</td>
-                                                        <td>Medical Collage</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Langone Medical Center</td>
-                                                        <td>13.2 km</td>
-                                                        <td>Hart Hospital</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Mount Sinai Hospital</td>
-                                                        <td>58.0 km</td>
-                                                        <td>Eye Hospital</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <!-- Shpping Data -->
-                                    <div class="tab-pane tab-hide" id="tb-panel-2" style="display: block;">
-                                        <div class="table-striped overflow-x-scroll pb-2">
-                                            <table class="w-100">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col" class="font-fifteen">Name</th>
-                                                        <th scope="col" class="font-fifteen">Distance</th>
-                                                        <th scope="col" class="font-fifteen">Type</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Massachusetts General Hospital</td>
-                                                        <td>23.7 km</td>
-                                                        <td>Medical Collage</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Langone Medical Center</td>
-                                                        <td>13.2 km</td>
-                                                        <td>Hart Hospital</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Mount Sinai Hospital</td>
-                                                        <td>58.0 km</td>
-                                                        <td>Eye Hospital</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <!-- Shpping Data -->
-                                    <div class="tab-pane tab-hide" id="tb-panel-3" style="display: block;">
-                                        <div class="table-striped overflow-x-scroll pb-2">
-                                            <table class="w-100">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col" class="font-fifteen">Name</th>
-                                                        <th scope="col" class="font-fifteen">Distance</th>
-                                                        <th scope="col" class="font-fifteen">Type</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Massachusetts General Hospital</td>
-                                                        <td>23.7 km</td>
-                                                        <td>Medical Collage</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Langone Medical Center</td>
-                                                        <td>13.2 km</td>
-                                                        <td>Hart Hospital</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Mount Sinai Hospital</td>
-                                                        <td>58.0 km</td>
-                                                        <td>Eye Hospital</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <!-- Shpping Data -->
-                                    <div class="tab-pane tab-hide" id="tb-panel-4" style="display: block;">
-                                        <div class="table-striped overflow-x-scroll pb-2">
-                                            <table class="w-100">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col" class="font-fifteen">Name</th>
-                                                        <th scope="col" class="font-fifteen">Distance</th>
-                                                        <th scope="col" class="font-fifteen">Type</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Massachusetts General Hospital</td>
-                                                        <td>23.7 km</td>
-                                                        <td>Medical Collage</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Langone Medical Center</td>
-                                                        <td>13.2 km</td>
-                                                        <td>Hart Hospital</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Mount Sinai Hospital</td>
-                                                        <td>58.0 km</td>
-                                                        <td>Eye Hospital</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-               
             </div>
         </div>
     </div>

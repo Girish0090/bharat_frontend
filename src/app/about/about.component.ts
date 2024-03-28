@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 declare var customJS:any;
+declare var homeCarousel1: any;
 
 @Component({
   selector: 'app-about',
@@ -12,6 +13,7 @@ export class AboutComponent implements OnInit {
 
   ngOnInit(): void {
     customJS();
+    homeCarousel1();
   }
 
 }

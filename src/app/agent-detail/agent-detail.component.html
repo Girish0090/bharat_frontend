@@ -62,21 +62,24 @@
             <div class="col-xl-4 order-2">
                 <!-- Message Form -->
                 <div class="widget widget_send_message mb-30">
-                    <h5 class="mb-4">Luann McLawhorn</h5>
-                    <form class="quick-search form-icon-right" action="#" method="post">
+                    <h5 class="mb-4">Get in Touch</h5>
+                    <form class="quick-search form-icon-right" [formGroup]="agentQueryForm" (ngSubmit)="querySubmit()">
                         <div class="form-row">
                             <div class="col-12 mb-10">
-                                <input type="text" class="form-control" name="name" placeholder="Your Name">
+                                <input type="text" class="form-control" name="name" placeholder="Your Name" formControlName="name">
+                                <small class="text-danger" *ngIf="!agentQueryForm.get('name')?.valid && submitForm">Please Enter Your Name</small>
                             </div>
                             <div class="col-12 mb-10">
-                                <input type="text" class="form-control" name="phone" placeholder="Phone Number">
+                                <input type="text" class="form-control" name="email" placeholder="Your Email" formControlName="email">
+                                <small class="text-danger" *ngIf="!agentQueryForm.get('email')?.valid && submitForm">Please Enter Email</small>
                             </div>
                             <div class="col-12 mb-10">
-                                <input type="email" class="form-control" name="email" placeholder="Your Email">
+                                <input type="email" class="form-control" name="mobile" placeholder="Phone Number" formControlName="mobile">
+                                <small class="text-danger" *ngIf="!agentQueryForm.get('mobile')?.valid && submitForm">Please Enter Mobile </small>
                             </div>
                             <div class="col-12 mb-10">
-                                <textarea class="form-control" name="message" placeholder="Message"
-                                    rows="3"></textarea>
+                                <textarea class="form-control" name="message" placeholder="Message" rows="3" formControlName="message"></textarea>
+                                <small class="text-danger" *ngIf="!agentQueryForm.get('message')?.valid && submitForm">Please Enter Message </small>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary w-100">Send Message</button>

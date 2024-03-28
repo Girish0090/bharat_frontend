@@ -12,18 +12,10 @@
 </div>
 <!--============== Page Banner End ==============-->
 
-<div class="full-row bg-light py-5">
-    <div class="container">
-        <div class="row justify-content-end">
-            <div class="col-md-8">
-                <span class="text-secondary font-italic h5">Discover Limitless Opportunities: Begin Your Career Adventure with Our Dedicated Team.</span>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <!--============== Career Start ==============-->
-<div class="full-row bg-light pt-0">
+<div class="full-row bg-light py-5">
     <div class="container">
         <div class="row mb-5">
             <div class="col-md-3">
@@ -43,14 +35,17 @@
                                 <div class="col-md-6 mb-20">
                                     <label class="mb-2">Full Name:</label>
                                     <input placeholder="Enter your name" formControlName="name" type="text" class="form-control bg-white">
+                                    <small class="text-danger" *ngIf="!careerForm.get('name')?.valid && submitForm">Please Enter Your Name</small>
                                 </div>
                                 <div class="col-md-6 mb-20">
                                     <label class="mb-2">Your Email:</label>
                                     <input placeholder="Enter your email" formControlName="email" type="email" class="form-control bg-white">
+                                    <small class="text-danger" *ngIf="!careerForm.get('email')?.valid && submitForm">Please Enter Your Email</small>
                                 </div>
                                 <div class="col-md-12 mb-20">
                                     <label class="mb-2">Contact Number:</label>
-                                    <input placeholder="Enter contact number" formControlName="mobile" type="tel" class="form-control bg-white" maxlength="10" minlength="10">
+                                    <input placeholder="Enter contact number" formControlName="mobile" type="tel" class="form-control bg-white" maxlength="10" minlength="10" onkeypress="return /[0-9 ]/i.test(event.key)">
+                                    <small class="text-danger" *ngIf="!careerForm.get('mobile')?.valid && submitForm">Please Enter Your Mobile </small>
                                 </div>
                                 <div class="col-md-12 mb-20">
                                     <label class="mb-2">Education Level:</label>
@@ -64,11 +59,13 @@
                                     <option value="Phd">P.hd</option>
                                     <option value="other">other</option>
                                 </select>
+                                <small class="text-danger" *ngIf="!careerForm.get('education_Level')?.valid && submitForm">Please Select Education Level</small>
                                 </div>
                                
                                 <div class="col-md-12 mb-20">
                                     <label class="mb-2">Message:</label>
                                     <textarea placeholder="Enter your message" formControlName="additional_Msg" class="form-control bg-white" rows="4"></textarea>
+                                    <small class="text-danger" *ngIf="!careerForm.get('additional_Msg')?.valid && submitForm">Please Enter Your Message</small>
                                 </div>
                                 <div class="col-md-12 mb-20">
                                     <label for="formFileLg" class="form-label">Upload your resume here:</label>

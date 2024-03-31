@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
       this.isHome = this.router.url === '/' || this.router.url === '/home';
     });
 
-    customJS();
+    // customJS();
   }
 
 }

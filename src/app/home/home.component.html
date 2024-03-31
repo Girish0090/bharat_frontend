@@ -8,11 +8,11 @@
       data-ls="bgsize:cover; bgposition:50% 50%; duration:5000; transition2d:104; kenburnsscale:1.00;">
       <img width="1920" height="960" src="{{baseUrl}}{{item?.slider_image?.path}}" class="ls-bg" alt="" />
 
-      <p style="font-size:48px; font-weight:700; top:370px; left:50%; font-family: 'Sen', sans-serif;"
+      <p style="font-size:48px; font-weight:700; top:300px; left:50%; font-family: 'Sen', sans-serif;"
         class="ls-l ls-hide-phone text-white"
         data-ls="offsetyin:100%; durationin:1500; delayin:1000; clipin:0 0 100% 0; durationout:400; parallaxlevel:0;">
         {{item?.text_one}}</p>
-      <p style="top:450px; left:50%; text-align:center; font-weight:400; font-style:normal; text-decoration:none; width:650px; font-size:18px; color:#ffffff; line-height:30px; white-space:normal;"
+      <p style="top:380px; left:50%; text-align:center; font-weight:400; font-style:normal; text-decoration:none; width:650px; font-size:18px; color:#ffffff; line-height:30px; white-space:normal;"
         class="ls-l ls-hide-phone"
         data-ls="offsetyin:100%; durationin:1500; delayin:1500; clipin:0 0 100% 0; durationout:400; parallaxlevel:0;">
         {{item?.text_two}}
@@ -32,32 +32,37 @@
     <div class="row">
       <div class="col col-lg-8 mx-auto">
         <form class="bg-white shadow-sm quick-search form-icon-right position-relative ">
-          <div class="row row-cols-md-3 row-cols-1 g-3 justify-content-center">
+          <div class="row row-cols-1 row-cols-md-3 g-3 justify-content-center">
 
-            <div class="col col-lg-4">
-              <label for="formFile">*City</label>
-              <select class="form-control" (change)="getCityValue($event)">
-                <option disabled selected>Select City</option>
-                <option *ngFor="let item of cityData">{{item}}</option>
-              </select>
+            <!-- Extra-extra-large screens (xxl) -->
+            <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <label for="formFile">*City</label>
+                <select class="form-control" (change)="getCityValue($event)">
+                    <option disabled selected>Select City</option>
+                    <option *ngFor="let item of cityData">{{item}}</option>
+                </select>
             </div>
-            <div class="col col-lg-6">
-              <div class="position-relative">
-                <!-- <input type="text" class="form-control" name="location" placeholder="Location">-->
-
-                <label for="location">*Location</label>
-                <ng-select class="form-control locationInput" notFoundText="There is no location"
-                  [items]="locationsByCity" bindLabel="name" placeholder="Select Location"
-                  [(ngModel)]="selectedLocation" [ngModelOptions]="{standalone: true}"></ng-select>
-                <i class="flaticon-placeholder flat-mini icon-font y-center text-dark"></i>
-              </div>
+        
+            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="position-relative">
+                    <label for="location">*Location</label>
+                    <ng-select class="form-control locationInput" notFoundText="There is no location"
+                        [items]="locationsByCity" bindLabel="name" placeholder="Select Location"
+                        [(ngModel)]="selectedLocation" [ngModelOptions]="{standalone: true}"></ng-select>
+                    <i class="flaticon-placeholder flat-mini icon-font y-center text-dark"></i>
+                </div>
             </div>
-
-            <div class="col col-lg-2">
-              <label for="formFile" style="visibility: hidden;">*Button</label>
-              <button class="btn btn-primary w-100" (click)="searchByCity()"> <i class="fas fa-search"></i> Search</button>
+        
+            <div class="col-xxl-2 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <!-- The label for the button is hidden -->
+                <label for="formFile" style="visibility: hidden;">*Button</label>
+                <button class="btn btn-primary w-100" (click)="searchByCity()">
+                    <i class="fas fa-search"></i> Search
+                </button>
             </div>
-          </div>
+        
+        </div>
+        
 
           <div class="row mt-4">
             <div class="col">
@@ -166,7 +171,7 @@
           </div>
           <div class="mt-3">
             <h5 class="transation font-400"><a routerLink="/listing/ajmer">AJMER</a></h5>
-            <p>82+ Properties</p>
+            <p>4+ Properties</p>
           </div>
         </div>
       </div>
@@ -177,7 +182,7 @@
           </div>
           <div class="mt-3">
             <h5 class="transation font-400"><a routerLink="/listing/jaipur">JAIPUR</a></h5>
-            <p>57+ Properties</p>
+            <p>95+ Properties</p>
           </div>
         </div>
       </div>
@@ -188,7 +193,7 @@
           </div>
           <div class="mt-3">
             <h5 class="transation font-400"><a routerLink="/listing/kota">KOTA</a></h5>
-            <p>17+ Properties</p>
+            <p>3+ Properties</p>
           </div>
         </div>
       </div>
@@ -199,7 +204,7 @@
           </div>
           <div class="mt-3">
             <h5 class="transation font-400"><a routerLink="/listing/panvel">PANVEL,(MUMBAI)</a></h5>
-            <p>17+ Properties</p>
+            <p>1+ Properties</p>
           </div>
         </div>
       </div>
@@ -210,7 +215,7 @@
           </div>
           <div class="mt-3">
             <h5 class="transation font-400"><a routerLink="/listing/indore">INDORE</a></h5>
-            <p>27+ Properties</p>
+            <p>Upcoming...</p>
           </div>
         </div>
       </div>
@@ -430,7 +435,7 @@
       <div class="col-lg-5">
         <div class="simple-video-play d-flex">
           <div class="position-relative d-inline-block">
-            <a data-fancybox href="https://www.youtube.com/watch?v=bh-klGboIg8"
+            <a data-fancybox href="https://www.youtube.com/watch?v=P8SKSuiaHr0"
               class="rounded-circle position-relative bg-primary" style="z-index: 10"><i
                 class="flaticon-play-button position-relative xy-center flat-mini rounded-circle text-white"></i></a>
             <div class="loader position-absolute xy-center">

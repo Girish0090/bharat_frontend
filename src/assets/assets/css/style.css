@@ -827,7 +827,7 @@ select:focus {
 }
 
 .property-search-form.on-slider {
-    margin-top: -220px;
+    margin-top: -300px;
     z-index: 99;
     margin-bottom: 40px;
 }

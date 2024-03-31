@@ -1,0 +1,9 @@
+.navbar-brand img{
+    width: 200px;
+}
+/* Adjust margin for small screens */
+@media (max-width: 576px) {
+    .navbar-brand img {
+        width: 170px;
+    }
+}

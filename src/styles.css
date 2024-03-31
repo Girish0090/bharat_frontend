@@ -4,16 +4,3 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-
-/* Default margin-top */
-#banner {
-    margin-top: 100px;
-}
-
-/* Media query for small screens */
-@media (max-width: 576px) {
-    #banner {
-        margin-top: 0; /* Set margin-top to 0 on small screens */
-    }
-}
